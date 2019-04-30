@@ -5,7 +5,6 @@ import { Provider as StoreProvider, connect } from "react-redux";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { logger } from "redux-logger";
 
-
 import individualList from "./individualsList";
 
 /* reducers*/
@@ -149,7 +148,7 @@ const IndividualTable = ({
                 type="button"
                 onClick={onAddIndividual}
                 className="btn btn-success pull-right"
-            >Add</button>
+            >Add Individual</button>
             <table className="table table-bordered">
                 <thead>
                     <tr>
@@ -280,7 +279,7 @@ const IndividualRow = props => (
                 type="button"
                 onClick={props.updateIndividual}
                 value="✓"
-                className="del-btn"
+                className="apply-btn"
             />
         </td>
         <td className="apply-row">
