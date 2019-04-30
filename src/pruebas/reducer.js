@@ -1,6 +1,6 @@
 import ActionTypes from "./action-types";
 
-import {combineReducers } from "redux";
+import { combineReducers } from "redux";
 
 //==============================================================================
 // familiar relations
