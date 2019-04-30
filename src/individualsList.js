@@ -5,7 +5,7 @@ const individualList = [
         id: 12,
         name: "mujer1",
         sex: "FEMALE",
-        karyotypicSex: "XY",
+        karyotypicSex: "XX",
         ethnicity: "white caucasian",
         species: {
             taxonomyCode: "",
@@ -251,7 +251,7 @@ const individualList = [
         id: 280,
         name: "fafweaf",
         sex: "FEMALE",
-        karyotypicSex: "XY",
+        karyotypicSex: "XX",
         ethnicity: "white caucasian",
         species: {
             taxonomyCode: "",
@@ -292,7 +292,7 @@ const individualList = [
         id: 523,
         name: "0013-010-COHO_7",
         sex: "FEMALE",
-        karyotypicSex: "XY",
+        karyotypicSex: "XX",
         ethnicity: "white caucasian",
         species: {
             taxonomyCode: "",
@@ -329,3 +329,6 @@ const individualList = [
         ]
     }
 ];
+
+
+export default individualList;
