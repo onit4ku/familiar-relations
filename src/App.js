@@ -1,13 +1,19 @@
 import React from "react";
 import "./App.css";
 
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
+
 import IndividualTable from "./individualTable";
+
+const theme = createMuiTheme();
 
 function App() {
     return (
-        <div className="App">
-            <IndividualTable />
-        </div>
+        <MuiThemeProvider theme={theme}>
+            <div className="App">
+                <IndividualTable />
+            </div>
+        </MuiThemeProvider>
     );
 }
 
