@@ -5,49 +5,7 @@ import { Provider as StoreProvider, connect } from "react-redux";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { logger } from "redux-logger";
 
-import individualList from "./individualsList";
-
-/* reducers*/
-function tableReducer(state = individualList, action) {
-    switch (!!action && action.type) {
-        case "ADD_INDIVIDUAL":
-            return state.concat([action.obj]);
-        case "DELETE_INDIVIDUAL":
-            return state.filter(
-                individual => individual.id !== action.individualId
-            );
-        case "DISCARD_INDIVIDUAL_CHANGES":
-            return state.map(individual => {
-                if (action.individualId === individual.id) {
-                    const { mod, ...otherProps } = individual;
-                    return otherProps;
-                } else {
-                    return individual;
-                }
-            });                
-        case "UPDATE_INDIVIDUAL_PROPERTY":
-            return state.map(individual => (
-                action.individualId !== individual.id ? individual : ({
-                    ...individual,
-                    mod: {
-                        ...individual.mod,
-                        [action.property]: action.value
-                    }
-                })
-            ));        
-        case "UPDATE_INDIVIDUAL":
-            return state.map((todo, index, arr) => {
-                if (arr[index].id.toString() === action.obj.id) {
-                    let obj = {};
-                    obj[action.obj.name] = action.obj.value;
-                    return Object.assign({}, todo, obj);
-                }
-                return todo;
-            });
-        default:
-            return state;
-    }
-}
+import tableReducer from "./IndividualTable.reducer";
 
 function filterReducer(state = "", action) {
     switch (!!action && action.type) {
@@ -68,9 +26,6 @@ const initialState = reducer();
 const store = createStore(reducer, initialState, applyMiddleware(logger));
 
 class Individuals extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
         return (
             <div>
@@ -148,7 +103,9 @@ const IndividualTable = ({
                 type="button"
                 onClick={onAddIndividual}
                 className="btn btn-success pull-right"
-            >Add Individual</button>
+            >
+                Add Individual
+            </button>
             <table className="table table-bordered">
                 <thead>
                     <tr>
@@ -193,7 +150,7 @@ const itMapDispatchToProps = dispatch => ({
             type: "ADD_INDIVIDUAL",
             obj: {
                 id: id,
-                name: "",
+                name: ""
             }
         });
     }
@@ -204,19 +161,16 @@ const ConnIndividualTable = connect(
     itMapDispatchToProps
 )(IndividualTable);
 
-
 const getPopulationName = individual => {
-    
     const props = { individual };
     if (!!individual.mod) {
     }
 
-    return (!!props.individual.mod &&
-        props.individual.mod.population) ||
-    (!!props.individual.population &&
-        props.individual.population.name) ||
-    "";
-
+    return (
+        (!!props.individual.mod && props.individual.mod.population) ||
+        (!!props.individual.population && props.individual.population.name) ||
+        ""
+    );
 };
 
 const IndividualRow = props => (
@@ -311,9 +265,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     discardChanges: () => {
         dispatch({
             type: "DISCARD_INDIVIDUAL_CHANGES",
-            individualId: ownProps.individual.id,
+            individualId: ownProps.individual.id
         });
-    },
+    }
 });
 
 const ConnIndividualRow = connect(
@@ -321,10 +275,7 @@ const ConnIndividualRow = connect(
     mapDispatchToProps
 )(IndividualRow);
 
-const EditableCellView = ({
-    propertyValue,
-    updateIndividualProperty
-}) => (
+const EditableCellView = ({ propertyValue, updateIndividualProperty }) => (
     <td>
         <input
             type="text"
