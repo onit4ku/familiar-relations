@@ -7,6 +7,17 @@ import { logger } from "redux-logger";
 
 import tableReducer from "./IndividualTable.reducer";
 
+import Select from "@material-ui/core/Select";
+import TableRowColumn from "@material-ui/core/TableRow";
+import MenuItem from "@material-ui/core/MenuItem";
+import TextField from "@material-ui/core/TextField";
+
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
+import ThreeSixtyIcon from "@material-ui/icons/Cached";
+import DoneIcon from "@material-ui/icons/DoneAll";
+
 function filterReducer(state = "", action) {
     switch (!!action && action.type) {
         case "FILTER_TEXT":
@@ -103,13 +114,15 @@ const IndividualTable = ({
     };
     return (
         <div>
-            <button
+            <Button
+                size="medium"
+                variant="outlined"
                 type="button"
                 onClick={onAddIndividual}
                 className="btn btn-success pull-right"
             >
                 Add Individual
-            </button>
+            </Button>
             <table className="table table-bordered">
                 <thead>
                     <tr>
@@ -119,6 +132,7 @@ const IndividualTable = ({
                         <th>Karyotypic Sex</th>
                         <th>Ethnicity</th>
                         <th>Population</th>
+                        <th>SubPopulation</th>
                         <th>Date Of Birth</th>
                         <th>Life Status</th>
                         <th>Affectation Status</th>
@@ -165,7 +179,7 @@ const ConnIndividualTable = connect(
     individualTableMapDispatchToProps
 )(IndividualTable);
 
-const getPopulationName = individual => {
+const getPopulation = individual => {
     const props = { individual };
     if (!!individual.mod) {
     }
@@ -176,13 +190,25 @@ const getPopulationName = individual => {
         ""
     );
 };
+const getSubPopulation = individual => {
+    const props = { individual };
+    if (!!individual.mod) {
+    }
+
+    return (
+        (!!props.individual.mod && props.individual.mod.population) ||
+        (!!props.individual.population &&
+            props.individual.population.subpopulation) ||
+        ""
+    );
+};
 
 //==============================================================================
 // IndividualRow
 //==============================================================================
 
 const IndividualRow = props => (
-    <tr className="eachRow">
+    <TableRowColumn className="eachRow">
         <EditableCell
             individualId={props.individual.id}
             propertyId={"name"}
@@ -211,7 +237,12 @@ const IndividualRow = props => (
         <EditableCell
             individualId={props.individual.id}
             propertyId={"population"}
-            propertyValue={getPopulationName(props.individual)}
+            propertyValue={getPopulation(props.individual)}
+        />
+        <SelectView
+            individualId={props.individual.id}
+            propertyId={"subpopulation"}
+            propertyValue={getSubPopulation(props.individual)}
         />
         <EditableCell
             individualId={props.individual.id}
@@ -229,30 +260,30 @@ const IndividualRow = props => (
             propertyValue={props.individual.affectationStatus}
         />
         <td className="del-cell">
-            <input
-                type="button"
+            <IconButton
                 onClick={props.removeIndividual}
-                value="X"
-                className="del-btn"
-            />
+                color="secondary"
+                aria-label="Delete"
+            >
+                <DeleteIcon />
+            </IconButton>
+        </td>
+
+        <td className="apply-row">
+            <IconButton onClick={props.updateIndividual} aria-label="update">
+                <DoneIcon />
+            </IconButton>
         </td>
         <td className="apply-row">
-            <input
-                type="button"
-                onClick={props.updateIndividual}
-                value="✓"
-                className="apply-btn"
-            />
-        </td>
-        <td className="apply-row">
-            <input
-                type="button"
+            <IconButton
                 onClick={props.discardChanges}
-                value="R"
-                className="del-btn"
-            />
+                color="primary"
+                aria-label="discard"
+            >
+                <ThreeSixtyIcon />
+            </IconButton>
         </td>
-    </tr>
+    </TableRowColumn>
 );
 
 const mapStateToProps = state => ({});
@@ -285,10 +316,11 @@ const ConnIndividualRow = connect(
 
 const EditableCellView = ({ propertyValue, updateIndividualProperty }) => (
     <td>
-        <input
+        <TextField
             type="text"
             value={propertyValue}
             onChange={updateIndividualProperty}
+            variant="outlined"
         />
     </td>
 );
@@ -320,9 +352,41 @@ const EditableCell = connect(
     editableCellMapDispatchToProps
 )(EditableCellView);
 
+const SelectView = ({ propertyValue, updateIndividualProperty }) => (
+    <td>
+        <Select value={propertyValue} onChange={updateIndividualProperty}>
+            <MenuItem value={propertyValue} onChange={updateIndividualProperty}>
+                {propertyValue}
+            </MenuItem>
+        </Select>
+    </td>
+);
+
+SelectView.propTypes = {
+    propertyId: PropTypes.string.isRequired,
+    propertyValue: PropTypes.string.isRequired
+};
+
+SelectView.defaultProps = {
+    propertyValue: ""
+};
+
+// const SelectViewMapStateToProps = state => ({});
+
+// const SelectViewMapDispatchToProps = (dispatch, ownProps) => ({
+//     updateIndividualProperty: event => {
+//         dispatch({
+//             type: "UPDATE_INDIVIDUAL_PROPERTY",
+//             individualId: ownProps.individualId,
+//             property: ownProps.propertyId,
+//             value: event.target.value
+//         });
+//     }
+// });
+
 const RootElement = () => (
     <StoreProvider store={store}>
-        <Individuals value={store.getState()} />
+            <Individuals value={store.getState()} />
     </StoreProvider>
 );
 
