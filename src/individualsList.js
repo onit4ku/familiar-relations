@@ -13,7 +13,7 @@ const individualList = [
         },
         population: {
             name: "Spain",
-            subpopulation: "",
+            subpopulation: "Granada",
             description: ""
         },
         dateOfBirth: "1950",
@@ -54,7 +54,7 @@ const individualList = [
         },
         population: {
             name: "Spain",
-            subpopulation: "",
+            subpopulation: "Sevilla",
             description: ""
         },
         dateOfBirth: "1920",
@@ -95,7 +95,7 @@ const individualList = [
         },
         population: {
             name: "Spain",
-            subpopulation: "",
+            subpopulation: "Malaga",
             description: ""
         },
         dateOfBirth: "1920",
@@ -136,7 +136,7 @@ const individualList = [
         },
         population: {
             name: "Spain",
-            subpopulation: "",
+            subpopulation: "Madrid",
             description: ""
         },
         dateOfBirth: "1920",
@@ -207,7 +207,7 @@ const individualList = [
     {
         annotationSets: [],
         id: 86,
-        name: "knucles",
+        name: "Vicente",
         sex: "MALE",
         karyotypicSex: "XY",
         ethnicity: "white caucasian",
@@ -218,7 +218,7 @@ const individualList = [
         },
         population: {
             name: "Spain",
-            subpopulation: "",
+            subpopulation: "Valencia",
             description: ""
         },
         dateOfBirth: "1920",
@@ -248,7 +248,7 @@ const individualList = [
     {
         annotationSets: [],
         id: 280,
-        name: "fafweaf",
+        name: "Ana",
         sex: "FEMALE",
         karyotypicSex: "XX",
         ethnicity: "white caucasian",
@@ -306,10 +306,10 @@ const individualList = [
         dateOfBirth: "1920",
         release: 1,
         version: 1,
-        creationDate: "20171204104557",
+        creationDate: "20170204104557",
         status: {
             name: "READY",
-            date: "20171204104557",
+            date: "20171205104557",
             message: ""
         },
         lifeStatus: "UNKNOWN",
