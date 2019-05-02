@@ -1,4 +1,3 @@
-
 const individualList = [
     {
         annotationSets: [],
@@ -329,6 +328,5 @@ const individualList = [
         ]
     }
 ];
-
 
 export default individualList;

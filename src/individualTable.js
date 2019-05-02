@@ -40,6 +40,10 @@ Individuals.propTypes = {
     value: PropTypes.object.isRequired
 };
 
+//==============================================================================
+// SearchBar
+//==============================================================================
+
 const SearchBar = props => (
     <div>
         <input
@@ -47,7 +51,7 @@ const SearchBar = props => (
             placeholder="Search..."
             value={props.filterText}
             onChange={evt => {
-                props.onFilterTextChange(evt.target.value);
+                props.onSearchChange(evt.target.value);
             }}
         />
     </div>
@@ -55,15 +59,15 @@ const SearchBar = props => (
 
 SearchBar.propTypes = {
     filterText: PropTypes.string,
-    onFilterTextChange: PropTypes.func.isRequired
+    onSearchChange: PropTypes.func.isRequired
 };
 
-const sbMapStateToProps = state => ({
+const searchBarMapStateToProps = state => ({
     filterText: state.filter
 });
 
-const sbMapDispatchToProps = dispatch => ({
-    onFilterTextChange: filterText => {
+const searchBarMapDispatchToProps = dispatch => ({
+    onSearchChange: filterText => {
         dispatch({
             type: "FILTER_TEXT",
             text: filterText
@@ -72,8 +76,8 @@ const sbMapDispatchToProps = dispatch => ({
 });
 
 const ConnSearchBar = connect(
-    sbMapStateToProps,
-    sbMapDispatchToProps
+    searchBarMapStateToProps,
+    searchBarMapDispatchToProps
 )(SearchBar);
 
 //==============================================================================
@@ -139,12 +143,12 @@ IndividualTable.propTypes = {
     addIndividual: PropTypes.func.isRequired
 };
 
-const itMapStateToProps = state => ({
+const individualTableMapStateToProps = state => ({
     filterText: state.filter,
     individuals: state.table
 });
 
-const itMapDispatchToProps = dispatch => ({
+const individualTableMapDispatchToProps = dispatch => ({
     addIndividual: id => {
         dispatch({
             type: "ADD_INDIVIDUAL",
@@ -157,8 +161,8 @@ const itMapDispatchToProps = dispatch => ({
 });
 
 const ConnIndividualTable = connect(
-    itMapStateToProps,
-    itMapDispatchToProps
+    individualTableMapStateToProps,
+    individualTableMapDispatchToProps
 )(IndividualTable);
 
 const getPopulationName = individual => {
@@ -172,6 +176,10 @@ const getPopulationName = individual => {
         ""
     );
 };
+
+//==============================================================================
+// IndividualRow
+//==============================================================================
 
 const IndividualRow = props => (
     <tr className="eachRow">
@@ -294,9 +302,9 @@ EditableCellView.defaultProps = {
     propertyValue: ""
 };
 
-const ecMapStateToProps = state => ({});
+const editableCellMapStateToProps = state => ({});
 
-const ecMapDispatchToProps = (dispatch, ownProps) => ({
+const editableCellMapDispatchToProps = (dispatch, ownProps) => ({
     updateIndividualProperty: event => {
         dispatch({
             type: "UPDATE_INDIVIDUAL_PROPERTY",
@@ -308,8 +316,8 @@ const ecMapDispatchToProps = (dispatch, ownProps) => ({
 });
 
 const EditableCell = connect(
-    ecMapStateToProps,
-    ecMapDispatchToProps
+    editableCellMapStateToProps,
+    editableCellMapDispatchToProps
 )(EditableCellView);
 
 const RootElement = () => (
