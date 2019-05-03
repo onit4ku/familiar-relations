@@ -5,7 +5,7 @@ import { Provider as StoreProvider, connect } from "react-redux";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { logger } from "redux-logger";
 
-import tableReducer from "../reducers/IndividualTable.reducer";
+import tableReducer from "./reducers/IndividualTable.reducer";
 
 import Select from "@material-ui/core/Select";
 import TableRowColumn from "@material-ui/core/TableRow";
@@ -25,7 +25,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import ResetIcon from "@material-ui/icons/Cached";
 import DoneIcon from "@material-ui/icons/DoneAll";
 
-import ConnSearchBar from "./searchBar";
+import ConnSearchBar from "../searchBar";
 
 function filterReducer(state = "", action) {
     switch (!!action && action.type) {
@@ -167,9 +167,60 @@ const getSubPopulation = individual => {
     }
 
     return (
-        (!!props.individual.mod && props.individual.mod.population) ||
+        (!!props.individual.mod &&
+            !!props.individual.mod.population &&
+            props.individual.mod.population.subpopulation) ||
         (!!props.individual.population &&
             props.individual.population.subpopulation) ||
+        ""
+    );
+};
+
+const getAffectation = individual => {
+    const props = { individual };
+    if (!!individual.mod) {
+    }
+
+    return (
+        (!!props.individual.mod && props.individual.mod.affectationStatus) ||
+        (!!props.individual.affectationStatus &&
+            props.individual.affectationStatus) ||
+        ""
+    );
+};
+
+const getKaryotypicSex = individual => {
+    const props = { individual };
+    if (!!individual.mod) {
+    }
+
+    return (
+        (!!props.individual.mod && props.individual.mod.karyotypicSex) ||
+        (!!props.individual.karyotypicSex && props.individual.karyotypicSex) ||
+        ""
+    );
+};
+
+const getSex = individual => {
+    const props = { individual };
+    if (!!individual.mod) {
+    }
+
+    return (
+        (!!props.individual.mod && props.individual.mod.sex) ||
+        (!!props.individual.sex && props.individual.sex) ||
+        ""
+    );
+};
+
+const getName = individual => {
+    const props = { individual };
+    if (!!individual.mod) {
+    }
+
+    return (
+        (!!props.individual.mod && props.individual.mod.name) ||
+        (!!props.individual.name && props.individual.name) ||
         ""
     );
 };
@@ -183,7 +234,8 @@ const IndividualRow = props => (
         <EditableCell
             individualId={props.individual.id}
             propertyId={"name"}
-            propertyValue={props.individual.name}
+            propertyValue={getName(props.individual)}
+
         />
         <EditableCell
             individualId={props.individual.id}
@@ -193,12 +245,13 @@ const IndividualRow = props => (
         <EditableCell
             individualId={props.individual.id}
             propertyId={"sex"}
-            propertyValue={props.individual.sex}
+            propertyValue={getSex(props.individual)}
+
         />
         <EditableCell
             individualId={props.individual.id}
             propertyId={"karyotypicSex"}
-            propertyValue={props.individual.karyotypicSex}
+            propertyValue={getKaryotypicSex(props.individual)}
         />
         <EditableCell
             individualId={props.individual.id}
@@ -228,7 +281,7 @@ const IndividualRow = props => (
         <EditableCell
             individualId={props.individual.id}
             propertyId={"affectationStatus"}
-            propertyValue={props.individual.affectationStatus}
+            propertyValue={getAffectation(props.individual)}
         />
         <td className="del-cell">
             <IconButton

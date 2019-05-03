@@ -38,10 +38,4 @@ const searchBarMapDispatchToProps = dispatch => ({
     }
 });
 
-const ConnSearchBar = connect(
-    searchBarMapStateToProps,
-    searchBarMapDispatchToProps
-)(SearchBar);
-
-
 export default connect(searchBarMapStateToProps, searchBarMapDispatchToProps)(SearchBar);

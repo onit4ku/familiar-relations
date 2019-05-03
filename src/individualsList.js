@@ -13,7 +13,7 @@ const individualList = [
         },
         population: {
             name: "Spain",
-            subpopulation: "Granada",
+            subpopulation: "Madrid",
             description: ""
         },
         dateOfBirth: "1950",
@@ -54,7 +54,7 @@ const individualList = [
         },
         population: {
             name: "Spain",
-            subpopulation: "Sevilla",
+            subpopulation: "Andalucia",
             description: ""
         },
         dateOfBirth: "1920",
@@ -95,7 +95,7 @@ const individualList = [
         },
         population: {
             name: "Spain",
-            subpopulation: "Malaga",
+            subpopulation: "Valencia",
             description: ""
         },
         dateOfBirth: "1920",
@@ -177,7 +177,7 @@ const individualList = [
         },
         population: {
             name: "Spain",
-            subpopulation: "",
+            subpopulation: "Andalucia",
             description: ""
         },
         dateOfBirth: "1920",
@@ -259,7 +259,7 @@ const individualList = [
         },
         population: {
             name: "Spain",
-            subpopulation: "",
+            subpopulation: "Pais Vasco",
             description: ""
         },
         dateOfBirth: "1920",
@@ -300,7 +300,7 @@ const individualList = [
         },
         population: {
             name: "Spain",
-            subpopulation: "",
+            subpopulation: "Galicia",
             description: ""
         },
         dateOfBirth: "1920",
