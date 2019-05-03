@@ -25,6 +25,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import ResetIcon from "@material-ui/icons/Cached";
 import DoneIcon from "@material-ui/icons/DoneAll";
 
+import ConnSearchBar from "./searchBar";
+
 function filterReducer(state = "", action) {
     switch (!!action && action.type) {
         case "FILTER_TEXT":
@@ -57,46 +59,6 @@ class Individuals extends React.Component {
 Individuals.propTypes = {
     value: PropTypes.object.isRequired
 };
-
-//==============================================================================
-// SearchBar
-//==============================================================================
-
-const SearchBar = props => (
-    <div>
-        <input
-            type="text"
-            placeholder="Search..."
-            value={props.filterText}
-            onChange={evt => {
-                props.onSearchChange(evt.target.value);
-            }}
-        />
-    </div>
-);
-
-SearchBar.propTypes = {
-    filterText: PropTypes.string,
-    onSearchChange: PropTypes.func.isRequired
-};
-
-const searchBarMapStateToProps = state => ({
-    filterText: state.filter
-});
-
-const searchBarMapDispatchToProps = dispatch => ({
-    onSearchChange: filterText => {
-        dispatch({
-            type: "FILTER_TEXT",
-            text: filterText
-        });
-    }
-});
-
-const ConnSearchBar = connect(
-    searchBarMapStateToProps,
-    searchBarMapDispatchToProps
-)(SearchBar);
 
 //==============================================================================
 // IndividualTable
