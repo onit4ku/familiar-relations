@@ -1,0 +1,16 @@
+.App {
+    /* margin: .5rem; */
+    color: rgb(114, 111, 111);
+
+    width: "100%";
+    margin-top: 1rem;
+    overflow-x: "auto";
+}
+
+table {
+    min-width: 700;
+}
+
+.paperStyle {
+    padding: 0.8rem;
+}

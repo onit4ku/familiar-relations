@@ -3,7 +3,7 @@ import "./App.css";
 
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 
-import IndividualTable from "./individualTable";
+import IndividualTable from "../components/individualTable";
 
 const theme = createMuiTheme();
 

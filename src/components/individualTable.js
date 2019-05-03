@@ -5,17 +5,24 @@ import { Provider as StoreProvider, connect } from "react-redux";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { logger } from "redux-logger";
 
-import tableReducer from "./IndividualTable.reducer";
+import tableReducer from "../reducers/IndividualTable.reducer";
 
 import Select from "@material-ui/core/Select";
 import TableRowColumn from "@material-ui/core/TableRow";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 
+import Paper from "@material-ui/core/Paper";
+
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
-import ThreeSixtyIcon from "@material-ui/icons/Cached";
+import ResetIcon from "@material-ui/icons/Cached";
 import DoneIcon from "@material-ui/icons/DoneAll";
 
 function filterReducer(state = "", action) {
@@ -123,30 +130,32 @@ const IndividualTable = ({
             >
                 Add Individual
             </Button>
-            <table className="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>ID</th>
-                        <th>Sex</th>
-                        <th>Karyotypic Sex</th>
-                        <th>Ethnicity</th>
-                        <th>Population</th>
-                        <th>SubPopulation</th>
-                        <th>Date Of Birth</th>
-                        <th>Life Status</th>
-                        <th>Affectation Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {filteredIndividuals.map(individual => (
-                        <ConnIndividualRow
-                            individual={individual}
-                            key={individual.id}
-                        />
-                    ))}
-                </tbody>
-            </table>
+            <Paper className="paperStyle">
+                <Table className="table table-bordered">
+                    <TableHead>
+                        <TableRow>
+                            <th>Name</th>
+                            <th>ID</th>
+                            <th>Sex</th>
+                            <th>Karyotypic Sex</th>
+                            <th>Ethnicity</th>
+                            <th>Population</th>
+                            <th>SubPopulation</th>
+                            <th>Date Of Birth</th>
+                            <th>Life Status</th>
+                            <th>Affectation Status</th>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {filteredIndividuals.map(individual => (
+                            <ConnIndividualRow
+                                individual={individual}
+                                key={individual.id}
+                            />
+                        ))}
+                    </TableBody>
+                </Table>
+            </Paper>
         </div>
     );
 };
@@ -280,7 +289,7 @@ const IndividualRow = props => (
                 color="primary"
                 aria-label="discard"
             >
-                <ThreeSixtyIcon />
+                <ResetIcon />
             </IconButton>
         </td>
     </TableRowColumn>
@@ -386,7 +395,7 @@ SelectView.defaultProps = {
 
 const RootElement = () => (
     <StoreProvider store={store}>
-            <Individuals value={store.getState()} />
+        <Individuals value={store.getState()} />
     </StoreProvider>
 );
 

@@ -1,4 +1,4 @@
-import individualList from "./individualsList";
+import individualList from "../individualsList";
 
 //==============================================================================
 // Reducers
