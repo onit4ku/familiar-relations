@@ -1,8 +1,5 @@
 import React from "react";
 
-import FormControl from "@material-ui/core/FormControl";
-import ListItemText from "@material-ui/core/ListItemText";
-
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -27,7 +24,7 @@ const ExpandableRowComp = props => (
         <ExpansionPanelDetails>
             <div />
             <div>
-                <Chip label="relation" onDelete={() => {}} />
+                <Chip label="relation" />
             </div>
             <div>
                 <Typography variant="caption">individual</Typography>

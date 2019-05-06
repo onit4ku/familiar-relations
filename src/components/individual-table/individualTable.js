@@ -7,11 +7,6 @@ import { logger } from "redux-logger";
 
 import tableReducer from "./reducers/IndividualTable.reducer";
 
-import Select from "@material-ui/core/Select";
-import TableRowColumn from "@material-ui/core/TableRow";
-import MenuItem from "@material-ui/core/MenuItem";
-import TextField from "@material-ui/core/TextField";
-
 import Paper from "@material-ui/core/Paper";
 
 import Table from "@material-ui/core/Table";
@@ -20,14 +15,9 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 
 import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete";
-import ResetIcon from "@material-ui/icons/Cached";
-import DoneIcon from "@material-ui/icons/DoneAll";
 
-import ExpandableRowComp from "../expandableTableRow/expandableTableRow";
-
-import ConnSearchBar from "../searchBar";
+import SearchBar from "../searchBar";
+import IndividualRow from "./individualRow";
 
 function filterReducer(state = "", action) {
     switch (!!action && action.type) {
@@ -51,7 +41,7 @@ class Individuals extends React.Component {
     render() {
         return (
             <div>
-                <ConnSearchBar />
+                <SearchBar />
                 <ConnIndividualTable />
             </div>
         );
@@ -112,7 +102,7 @@ const IndividualTable = ({
                     </TableHead>
                     <TableBody>
                         {filteredIndividuals.map(individual => (
-                            <ConnIndividualRow
+                            <IndividualRow
                                 individual={individual}
                                 key={individual.id}
                             />
@@ -151,265 +141,6 @@ const ConnIndividualTable = connect(
     individualTableMapStateToProps,
     individualTableMapDispatchToProps
 )(IndividualTable);
-
-const getPopulation = individual => {
-    const props = { individual };
-    if (!!individual.mod) {
-    }
-
-    return (
-        (!!props.individual.mod && props.individual.mod.population) ||
-        (!!props.individual.population && props.individual.population.name) ||
-        ""
-    );
-};
-const getSubPopulation = individual => {
-    const props = { individual };
-    if (!!individual.mod) {
-    }
-
-    return (
-        (!!props.individual.mod &&
-            !!props.individual.mod.population &&
-            props.individual.mod.population.subpopulation) ||
-        (!!props.individual.population &&
-            props.individual.population.subpopulation) ||
-        ""
-    );
-};
-
-const getAffectation = individual => {
-    const props = { individual };
-    if (!!individual.mod) {
-    }
-
-    return (
-        (!!props.individual.mod && props.individual.mod.affectationStatus) ||
-        (!!props.individual.affectationStatus &&
-            props.individual.affectationStatus) ||
-        ""
-    );
-};
-
-const getKaryotypicSex = individual => {
-    const props = { individual };
-    if (!!individual.mod) {
-    }
-
-    return (
-        (!!props.individual.mod && props.individual.mod.karyotypicSex) ||
-        (!!props.individual.karyotypicSex && props.individual.karyotypicSex) ||
-        ""
-    );
-};
-
-const getSex = individual => {
-    const props = { individual };
-    if (!!individual.mod) {
-    }
-
-    return (
-        (!!props.individual.mod && props.individual.mod.sex) ||
-        (!!props.individual.sex && props.individual.sex) ||
-        ""
-    );
-};
-
-const getName = individual => {
-    const props = { individual };
-    if (!!individual.mod) {
-    }
-
-    return (
-        (!!props.individual.mod && props.individual.mod.name) ||
-        (!!props.individual.name && props.individual.name) ||
-        ""
-    );
-};
-
-//==============================================================================
-// IndividualRow
-//==============================================================================
-
-const IndividualRow = props => (
-    <TableRowColumn className="eachRow">
-        <EditableCell
-            individualId={props.individual.id}
-            propertyId={"name"}
-            propertyValue={getName(props.individual)}
-        />
-        <EditableCell
-            individualId={props.individual.id}
-            propertyId={"id"}
-            propertyValue={props.individual.id}
-        />
-        <EditableCell
-            individualId={props.individual.id}
-            propertyId={"sex"}
-            propertyValue={getSex(props.individual)}
-        />
-        <EditableCell
-            individualId={props.individual.id}
-            propertyId={"karyotypicSex"}
-            propertyValue={getKaryotypicSex(props.individual)}
-        />
-        <EditableCell
-            individualId={props.individual.id}
-            propertyId={"ethnicity"}
-            propertyValue={props.individual.ethnicity}
-        />
-        <EditableCell
-            individualId={props.individual.id}
-            propertyId={"population"}
-            propertyValue={getPopulation(props.individual)}
-        />
-        <SelectView
-            individualId={props.individual.id}
-            propertyId={"subpopulation"}
-            propertyValue={getSubPopulation(props.individual)}
-        />
-        <EditableCell
-            individualId={props.individual.id}
-            propertyId={"dateOfBirth"}
-            propertyValue={props.individual.dateOfBirth}
-        />
-        <EditableCell
-            individualId={props.individual.id}
-            propertyId={"lifeStatus"}
-            propertyValue={props.individual.lifeStatus}
-        />
-        <EditableCell
-            individualId={props.individual.id}
-            propertyId={"affectationStatus"}
-            propertyValue={getAffectation(props.individual)}
-        />
-
-        <ExpandableRowComp />
-
-        <td className="del-cell">
-            <IconButton
-                onClick={props.removeIndividual}
-                color="secondary"
-                aria-label="Delete"
-            >
-                <DeleteIcon />
-            </IconButton>
-        </td>
-
-        <td className="apply-row">
-            <IconButton onClick={props.updateIndividual} aria-label="update">
-                <DoneIcon />
-            </IconButton>
-        </td>
-        <td className="apply-row">
-            <IconButton
-                onClick={props.discardChanges}
-                color="primary"
-                aria-label="discard"
-            >
-                <ResetIcon />
-            </IconButton>
-        </td>
-    </TableRowColumn>
-);
-
-const mapStateToProps = state => ({});
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-    updateIndividual: () => {
-        dispatch({
-            type: "UPDATE_INDIVIDUAL",
-            obj: ownProps.individual
-        });
-    },
-    removeIndividual: () => {
-        dispatch({
-            type: "DELETE_INDIVIDUAL",
-            individualId: ownProps.individual.id
-        });
-    },
-    discardChanges: () => {
-        dispatch({
-            type: "DISCARD_INDIVIDUAL_CHANGES",
-            individualId: ownProps.individual.id
-        });
-    }
-});
-
-const ConnIndividualRow = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(IndividualRow);
-
-const EditableCellView = ({ propertyValue, updateIndividualProperty }) => (
-    <td>
-        <TextField
-            type="text"
-            value={propertyValue}
-            onChange={updateIndividualProperty}
-            variant="outlined"
-        />
-    </td>
-);
-
-EditableCellView.propTypes = {
-    propertyId: PropTypes.string.isRequired,
-    propertyValue: PropTypes.string.isRequired
-};
-
-EditableCellView.defaultProps = {
-    propertyValue: ""
-};
-
-const editableCellMapStateToProps = state => ({});
-
-const editableCellMapDispatchToProps = (dispatch, ownProps) => ({
-    updateIndividualProperty: event => {
-        dispatch({
-            type: "UPDATE_INDIVIDUAL_PROPERTY",
-            individualId: ownProps.individualId,
-            property: ownProps.propertyId,
-            value: event.target.value
-        });
-    }
-});
-
-const EditableCell = connect(
-    editableCellMapStateToProps,
-    editableCellMapDispatchToProps
-)(EditableCellView);
-
-const SelectView = ({ propertyValue, updateIndividualProperty }) => (
-    <td>
-        <Select value={propertyValue} onChange={updateIndividualProperty}>
-            <MenuItem value={propertyValue} onChange={updateIndividualProperty}>
-                {propertyValue}
-            </MenuItem>
-        </Select>
-    </td>
-);
-
-SelectView.propTypes = {
-    propertyId: PropTypes.string.isRequired,
-    propertyValue: PropTypes.string.isRequired
-};
-
-SelectView.defaultProps = {
-    propertyValue: ""
-};
-
-// const SelectViewMapStateToProps = state => ({});
-
-// const SelectViewMapDispatchToProps = (dispatch, ownProps) => ({
-//     updateIndividualProperty: event => {
-//         dispatch({
-//             type: "UPDATE_INDIVIDUAL_PROPERTY",
-//             individualId: ownProps.individualId,
-//             property: ownProps.propertyId,
-//             value: event.target.value
-//         });
-//     }
-// });
 
 const RootElement = () => (
     <StoreProvider store={store}>
