@@ -25,6 +25,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import ResetIcon from "@material-ui/icons/Cached";
 import DoneIcon from "@material-ui/icons/DoneAll";
 
+import ExpandableRowComp from "../expandableTableRow/expandableTableRow";
+
 import ConnSearchBar from "../searchBar";
 
 function filterReducer(state = "", action) {
@@ -235,7 +237,6 @@ const IndividualRow = props => (
             individualId={props.individual.id}
             propertyId={"name"}
             propertyValue={getName(props.individual)}
-
         />
         <EditableCell
             individualId={props.individual.id}
@@ -246,7 +247,6 @@ const IndividualRow = props => (
             individualId={props.individual.id}
             propertyId={"sex"}
             propertyValue={getSex(props.individual)}
-
         />
         <EditableCell
             individualId={props.individual.id}
@@ -283,6 +283,9 @@ const IndividualRow = props => (
             propertyId={"affectationStatus"}
             propertyValue={getAffectation(props.individual)}
         />
+
+        <ExpandableRowComp />
+
         <td className="del-cell">
             <IconButton
                 onClick={props.removeIndividual}
