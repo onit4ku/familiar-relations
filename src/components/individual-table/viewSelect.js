@@ -4,6 +4,10 @@ import PropTypes from "prop-types";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 
+//==============================================================================
+// SelectView
+//==============================================================================
+
 const SelectView = ({ propertyValue, updateIndividualProperty }) => (
     <td>
         <Select value={propertyValue} onChange={updateIndividualProperty}>

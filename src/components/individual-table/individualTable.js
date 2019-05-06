@@ -16,7 +16,7 @@ import TableRow from "@material-ui/core/TableRow";
 
 import Button from "@material-ui/core/Button";
 
-import SearchBar from "../searchBar";
+import SearchBar from "./searchBar";
 import IndividualRow from "./individualRow";
 
 function filterReducer(state = "", action) {

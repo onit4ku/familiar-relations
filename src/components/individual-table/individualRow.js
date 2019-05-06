@@ -6,86 +6,11 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import ResetIcon from "@material-ui/icons/Cached";
 import DoneIcon from "@material-ui/icons/DoneAll";
 
-import EditableCell from "./editableCellView";
-import SelectView from "./selectView";
+import EditableCell from "./viewEditableCell";
+import SelectView from "./viewSelect";
 import ExpandableRowComp from "../expandableTableRow/expandableTableRow";
 
 import TableRowColumn from "@material-ui/core/TableRow";
-
-const getPopulation = individual => {
-    const props = { individual };
-    if (!!individual.mod) {
-    }
-
-    return (
-        (!!props.individual.mod && props.individual.mod.population) ||
-        (!!props.individual.population && props.individual.population.name) ||
-        ""
-    );
-};
-const getSubPopulation = individual => {
-    const props = { individual };
-    if (!!individual.mod) {
-    }
-
-    return (
-        (!!props.individual.mod &&
-            !!props.individual.mod.population &&
-            props.individual.mod.population.subpopulation) ||
-        (!!props.individual.population &&
-            props.individual.population.subpopulation) ||
-        ""
-    );
-};
-
-const getAffectation = individual => {
-    const props = { individual };
-    if (!!individual.mod) {
-    }
-
-    return (
-        (!!props.individual.mod && props.individual.mod.affectationStatus) ||
-        (!!props.individual.affectationStatus &&
-            props.individual.affectationStatus) ||
-        ""
-    );
-};
-
-const getKaryotypicSex = individual => {
-    const props = { individual };
-    if (!!individual.mod) {
-    }
-
-    return (
-        (!!props.individual.mod && props.individual.mod.karyotypicSex) ||
-        (!!props.individual.karyotypicSex && props.individual.karyotypicSex) ||
-        ""
-    );
-};
-
-const getSex = individual => {
-    const props = { individual };
-    if (!!individual.mod) {
-    }
-
-    return (
-        (!!props.individual.mod && props.individual.mod.sex) ||
-        (!!props.individual.sex && props.individual.sex) ||
-        ""
-    );
-};
-
-const getName = individual => {
-    const props = { individual };
-    if (!!individual.mod) {
-    }
-
-    return (
-        (!!props.individual.mod && props.individual.mod.name) ||
-        (!!props.individual.name && props.individual.name) ||
-        ""
-    );
-};
 
 //==============================================================================
 // IndividualRow
@@ -195,6 +120,85 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         });
     }
 });
+
+//==============================================================================
+// Getters
+//==============================================================================
+
+const getPopulation = individual => {
+    const props = { individual };
+    if (!!individual.mod) {
+    }
+
+    return (
+        (!!props.individual.mod && props.individual.mod.population) ||
+        (!!props.individual.population && props.individual.population.name) ||
+        ""
+    );
+};
+const getSubPopulation = individual => {
+    const props = { individual };
+    if (!!individual.mod) {
+    }
+
+    return (
+        (!!props.individual.mod &&
+            !!props.individual.mod.population &&
+            props.individual.mod.population.subpopulation) ||
+        (!!props.individual.population &&
+            props.individual.population.subpopulation) ||
+        ""
+    );
+};
+
+const getAffectation = individual => {
+    const props = { individual };
+    if (!!individual.mod) {
+    }
+
+    return (
+        (!!props.individual.mod && props.individual.mod.affectationStatus) ||
+        (!!props.individual.affectationStatus &&
+            props.individual.affectationStatus) ||
+        ""
+    );
+};
+
+const getKaryotypicSex = individual => {
+    const props = { individual };
+    if (!!individual.mod) {
+    }
+
+    return (
+        (!!props.individual.mod && props.individual.mod.karyotypicSex) ||
+        (!!props.individual.karyotypicSex && props.individual.karyotypicSex) ||
+        ""
+    );
+};
+
+const getSex = individual => {
+    const props = { individual };
+    if (!!individual.mod) {
+    }
+
+    return (
+        (!!props.individual.mod && props.individual.mod.sex) ||
+        (!!props.individual.sex && props.individual.sex) ||
+        ""
+    );
+};
+
+const getName = individual => {
+    const props = { individual };
+    if (!!individual.mod) {
+    }
+
+    return (
+        (!!props.individual.mod && props.individual.mod.name) ||
+        (!!props.individual.name && props.individual.name) ||
+        ""
+    );
+};
 
 export default connect(
     mapStateToProps,
