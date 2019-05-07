@@ -31,12 +31,12 @@ const IndividualRow = props => (
         <EditableCell
             individualId={props.individual.id}
             propertyId={"sex"}
-            propertyValue={getSex(props.individual)}
+            propertyValue={props.individual.sex}
         />
         <EditableCell
             individualId={props.individual.id}
             propertyId={"karyotypicSex"}
-            propertyValue={getKaryotypicSex(props.individual)}
+            propertyValue={props.individual.karyotypicSex}
         />
         <EditableCell
             individualId={props.individual.id}
@@ -61,7 +61,7 @@ const IndividualRow = props => (
         <EditableCell
             individualId={props.individual.id}
             propertyId={"lifeStatus"}
-            propertyValue={props.individual.lifeStatus}
+            propertyValue={getLifeStatus(props.individual)}
         />
         <EditableCell
             individualId={props.individual.id}
@@ -164,30 +164,6 @@ const getAffectation = individual => {
     );
 };
 
-const getKaryotypicSex = individual => {
-    const props = { individual };
-    if (!!individual.mod) {
-    }
-
-    return (
-        (!!props.individual.mod && props.individual.mod.karyotypicSex) ||
-        (!!props.individual.karyotypicSex && props.individual.karyotypicSex) ||
-        ""
-    );
-};
-
-const getSex = individual => {
-    const props = { individual };
-    if (!!individual.mod) {
-    }
-
-    return (
-        (!!props.individual.mod && props.individual.mod.sex) ||
-        (!!props.individual.sex && props.individual.sex) ||
-        ""
-    );
-};
-
 const getName = individual => {
     const props = { individual };
     if (!!individual.mod) {
@@ -196,6 +172,18 @@ const getName = individual => {
     return (
         (!!props.individual.mod && props.individual.mod.name) ||
         (!!props.individual.name && props.individual.name) ||
+        ""
+    );
+};
+
+const getLifeStatus = individual => {
+    const props = { individual };
+    if (!!individual.mod) {
+    }
+
+    return (
+        (!!props.individual.mod && props.individual.mod.lifeStatus) ||
+        (!!props.individual.lifeStatus && props.individual.lifeStatus) ||
         ""
     );
 };

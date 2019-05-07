@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
@@ -27,17 +28,20 @@ SelectView.defaultProps = {
     propertyValue: ""
 };
 
-// const SelectViewMapStateToProps = state => ({});
+const SelectViewMapStateToProps = state => ({});
 
-// const SelectViewMapDispatchToProps = (dispatch, ownProps) => ({
-//     updateIndividualProperty: event => {
-//         dispatch({
-//             type: "UPDATE_INDIVIDUAL_PROPERTY",
-//             individualId: ownProps.individualId,
-//             property: ownProps.propertyId,
-//             value: event.target.value
-//         });
-//     }
-// });
+const SelectViewMapDispatchToProps = (dispatch, ownProps) => ({
+    updateIndividualProperty: event => {
+        dispatch({
+            type: "UPDATE_INDIVIDUAL_PROPERTY",
+            individualId: ownProps.individualId,
+            property: ownProps.propertyId,
+            value: event.target.value
+        });
+    }
+});
 
-export default SelectView;
+export default connect(
+    SelectViewMapStateToProps,
+    SelectViewMapDispatchToProps
+)(SelectView);
