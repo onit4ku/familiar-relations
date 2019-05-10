@@ -42,6 +42,21 @@ export default function tableReducer(state = individualList, action) {
                 }
                 return todo;
             });
+        case "EXPAND_INDIVIDUAL":
+            return state.map(individual =>
+                individual.id === action.individualId
+                    ? { ...individual, expanded: true }
+                    : individual
+            );
+        case "COLLAPSE_INDIVIDUAL":
+            return state.map(individual => {
+                if (individual.id === action.individualId) {
+                    const { expanded, ...newIndividual } = individual;
+                    return newIndividual;
+                } else {
+                    return individual;
+                }
+            });
         default:
             return state;
     }

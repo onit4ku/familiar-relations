@@ -3,20 +3,20 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import TextField from "@material-ui/core/TextField";
+import { TableCell } from "@material-ui/core";
 
 //==============================================================================
 // EditableCellView
 //==============================================================================
 
 const EditableCellView = ({ propertyValue, updateIndividualProperty }) => (
-    <td>
+    <TableCell>
         <TextField
             type="text"
             value={propertyValue}
             onChange={updateIndividualProperty}
-            variant="outlined"
         />
-    </td>
+    </TableCell>
 );
 
 EditableCellView.propTypes = {

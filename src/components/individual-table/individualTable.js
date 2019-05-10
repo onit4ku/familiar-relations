@@ -18,6 +18,7 @@ import Button from "@material-ui/core/Button";
 
 import SearchBar from "./searchBar";
 import IndividualRow from "./individualRow";
+import { TableCell } from "@material-ui/core";
 
 function filterReducer(state = "", action) {
     switch (!!action && action.type) {
@@ -85,19 +86,26 @@ const IndividualTable = ({
                 Add Individual
             </Button>
             <Paper className="paperStyle">
-                <Table className="table table-bordered">
+                <Table>
                     <TableHead>
                         <TableRow>
-                            <th>Name</th>
-                            <th>ID</th>
-                            <th>Sex</th>
-                            <th>Karyotypic Sex</th>
-                            <th>Ethnicity</th>
-                            <th>Population</th>
-                            <th>SubPopulation</th>
-                            <th>Date Of Birth</th>
-                            <th>Life Status</th>
-                            <th>Affectation Status</th>
+                            <TableCell />
+                            <TableCell>Name</TableCell>
+                            <TableCell>ID</TableCell>
+                            <TableCell>Sex</TableCell>
+                            <TableCell>Karyotypic Sex</TableCell>
+                            <TableCell>Ethnicity</TableCell>
+                            <TableCell>Population</TableCell>
+                            <TableCell>SubPopulation</TableCell>
+                            <TableCell>Date Of Birth</TableCell>
+                            <TableCell >
+                                Life Status
+                            </TableCell>
+                            <TableCell>
+                                Affectation Status
+                            </TableCell>
+                            <TableCell>Phenotype</TableCell>
+                            <TableCell />
                         </TableRow>
                     </TableHead>
                     <TableBody>

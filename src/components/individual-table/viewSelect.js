@@ -4,19 +4,20 @@ import { connect } from "react-redux";
 
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
+import { TableCell } from "@material-ui/core";
 
 //==============================================================================
 // SelectView
 //==============================================================================
 
 const SelectView = ({ propertyValue, updateIndividualProperty }) => (
-    <td>
+    <TableCell>
         <Select value={propertyValue} onChange={updateIndividualProperty}>
             <MenuItem value={propertyValue} onChange={updateIndividualProperty}>
                 {propertyValue}
             </MenuItem>
         </Select>
-    </td>
+    </TableCell>
 );
 
 SelectView.propTypes = {
