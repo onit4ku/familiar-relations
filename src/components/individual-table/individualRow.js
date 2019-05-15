@@ -27,16 +27,19 @@ const IndividualRowDetail = props => (
         <div className="rowDetail">{JSON.stringify(props.individual)}</div>
         <Divider />
         <div className="rowDetail">Phenotypes</div>
+        <div className="rowDetailDesc"> ༼ つ ◕_◕ ༽つ </div>
         <Divider />
         <div className="rowDetail">Diagnostic</div>
+        <div className="rowDetailDesc"> ༼ つ ◕_◕ ༽つ </div>
         <Divider />
         <div className="rowDetail">Relations</div>
+        <div className="rowDetailDesc"> ༼ つ ◕_◕ ༽つ </div>
     </Paper>
 );
 
 const IndividualRow = props => (
     <React.Fragment>
-        <TableRow>
+        <TableRow onClick={props.handleExpand}>
             <TableCell>
                 <Checkbox
                     checked={!!props.individual.expanded}
@@ -77,7 +80,7 @@ const IndividualRow = props => (
             >
                 {props.individual.ethnicity}
             </TableCell>
-            <EditableCell
+            <SelectView
                 individualId={props.individual.id}
                 propertyId={"population"}
                 propertyValue={getPopulation(props.individual)}
@@ -142,7 +145,7 @@ const IndividualRow = props => (
         </TableRow>
         <CollapsibleRow
             open={props.individual.expanded}
-            cellProps={{ colSpan: 15 }}
+            cellProps={{ colSpan: 14 }}
         >
             <IndividualRowDetail {...props} />
         </CollapsibleRow>

@@ -85,8 +85,8 @@ const IndividualTable = ({
             >
                 Add Individual
             </Button>
-            <Paper className="paperStyle">
-                <Table>
+            <Paper>
+                <Table padding="none">
                     <TableHead>
                         <TableRow>
                             <TableCell />
@@ -98,12 +98,8 @@ const IndividualTable = ({
                             <TableCell>Population</TableCell>
                             <TableCell>SubPopulation</TableCell>
                             <TableCell>Date Of Birth</TableCell>
-                            <TableCell >
-                                Life Status
-                            </TableCell>
-                            <TableCell>
-                                Affectation Status
-                            </TableCell>
+                            <TableCell>Life Status</TableCell>
+                            <TableCell>Affectation Status</TableCell>
                             <TableCell>Phenotype</TableCell>
                             <TableCell />
                         </TableRow>

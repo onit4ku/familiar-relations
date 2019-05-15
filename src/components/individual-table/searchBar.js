@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 //==============================================================================
 // SearchBar
@@ -38,4 +38,7 @@ const searchBarMapDispatchToProps = dispatch => ({
     }
 });
 
-export default connect(searchBarMapStateToProps, searchBarMapDispatchToProps)(SearchBar);
+export default connect(
+    searchBarMapStateToProps,
+    searchBarMapDispatchToProps
+)(SearchBar);

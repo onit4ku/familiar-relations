@@ -7,5 +7,15 @@
 }
 
 .rowDetail {
+    display: flex;
+    flex-direction: column;
     padding: 2rem;
+    flex-basis: "33.33%";
+}
+.rowDetailDesc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: "66.66%";
+    margin-bottom: 1px;
 }
