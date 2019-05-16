@@ -14,7 +14,8 @@ import TableBody from "@material-ui/core/TableBody";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 
-import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import AddIcon from "@material-ui/icons/Add";
 
 import SearchBar from "./searchBar";
 import IndividualRow from "./individualRow";
@@ -42,7 +43,7 @@ class Individuals extends React.Component {
     render() {
         return (
             <div>
-                <SearchBar />
+                {/*} <SearchBar /> {*/}
                 <ConnIndividualTable />
             </div>
         );
@@ -76,20 +77,19 @@ const IndividualTable = ({
     };
     return (
         <div>
-            <Button
-                size="medium"
-                variant="outlined"
-                type="button"
-                onClick={onAddIndividual}
-                className="btn btn-success pull-right"
-            >
-                Add Individual
-            </Button>
             <Paper>
                 <Table padding="none">
                     <TableHead>
                         <TableRow>
-                            <TableCell />
+                            <TableCell>
+                                <IconButton
+                                    onClick={onAddIndividual}
+                                    color="green"
+                                    aria-label="add"
+                                >
+                                    <AddIcon />
+                                </IconButton>
+                            </TableCell>
                             <TableCell>Name</TableCell>
                             <TableCell>ID</TableCell>
                             <TableCell>Sex</TableCell>
@@ -101,7 +101,9 @@ const IndividualTable = ({
                             <TableCell>Life Status</TableCell>
                             <TableCell>Affectation Status</TableCell>
                             <TableCell>Phenotype</TableCell>
-                            <TableCell />
+                            <TableCell>
+                                <SearchBar />
+                            </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -135,7 +137,9 @@ const individualTableMapDispatchToProps = dispatch => ({
             type: "ADD_INDIVIDUAL",
             obj: {
                 id: id,
-                name: ""
+                name: "",
+                date:"1970-01-15",
+                phenotypes: [0]
             }
         });
     }

@@ -10,15 +10,27 @@ import { TableCell } from "@material-ui/core";
 // SelectView
 //==============================================================================
 
-const SelectView = ({ propertyValue, updateIndividualProperty }) => (
+const SelectView = ({ propertyValue, updateIndividualProperty, children }) => (
     <TableCell>
         <Select value={propertyValue} onChange={updateIndividualProperty}>
-            <MenuItem value={propertyValue} onChange={updateIndividualProperty}>
-                {propertyValue}
-            </MenuItem>
+            {children}
         </Select>
     </TableCell>
 );
+
+
+// const SelectView = ({ propertyValue, updateIndividualProperty, children }) => (
+//     <TableCell>
+//         <Select value={propertyValue} onChange={updateIndividualProperty}>
+//             { children }
+//             {/*
+//             <MenuItem value={propertyValue} onChange={updateIndividualProperty}>
+//                 {propertyValue}
+//             </MenuItem>
+//             */}
+//         </Select>
+//     </TableCell>
+// );
 
 SelectView.propTypes = {
     propertyId: PropTypes.string.isRequired,

@@ -1,8 +1,20 @@
+// TODO: move this to a better place
+const translateDateFromServer = dateStr =>
+    (!!dateStr &&
+        dateStr.length >= 8 &&
+        new Date(
+            `${dateStr.substring(0, 4)}-${dateStr.substring(
+                4,
+                6
+            )}-${dateStr.substring(6, 8)}`
+        )) ||
+    undefined;
+
 const individualList = [
     {
         annotationSets: [],
         id: 12,
-        name: "mujer1",
+        name: "00124-010-COHO_6",
         sex: "FEMALE",
         karyotypicSex: "XX",
         ethnicity: "white caucasian",
@@ -16,7 +28,7 @@ const individualList = [
             subpopulation: "Madrid",
             description: ""
         },
-        dateOfBirth: "1950",
+        dateOfBirth: "1959",
         release: 1,
         version: 1,
         creationDate: "20171204104557",
@@ -43,7 +55,7 @@ const individualList = [
     {
         annotationSets: [],
         id: 43,
-        name: "arnaldo",
+        name: "013-01532-COHO_7",
         sex: "MALE",
         karyotypicSex: "XY",
         ethnicity: "white caucasian",
@@ -57,7 +69,7 @@ const individualList = [
             subpopulation: "Andalucia",
             description: ""
         },
-        dateOfBirth: "1920",
+        dateOfBirth: "1987",
         release: 1,
         version: 1,
         creationDate: "20171204104557",
@@ -84,7 +96,7 @@ const individualList = [
     {
         annotationSets: [],
         id: 243,
-        name: "manuel",
+        name: "4213-032-COHO_17",
         sex: "MALE",
         karyotypicSex: "XY",
         ethnicity: "white caucasian",
@@ -98,7 +110,7 @@ const individualList = [
             subpopulation: "Valencia",
             description: ""
         },
-        dateOfBirth: "1920",
+        dateOfBirth: "1964",
         release: 1,
         version: 1,
         creationDate: "20171204104557",
@@ -107,8 +119,8 @@ const individualList = [
             date: "20171204104557",
             message: ""
         },
-        lifeStatus: "UNKNOWN",
-        affectationStatus: "AFFECTED",
+        lifeStatus: "DECEASED",
+        affectationStatus: "UNAFFECTED",
         phenotypes: [
             {
                 id: "F72",
@@ -125,7 +137,7 @@ const individualList = [
     {
         annotationSets: [],
         id: 212,
-        name: "estrudel",
+        name: "2014-086-COHO_3",
         sex: "MALE",
         karyotypicSex: "XY",
         ethnicity: "white caucasian",
@@ -139,7 +151,7 @@ const individualList = [
             subpopulation: "Madrid",
             description: ""
         },
-        dateOfBirth: "1920",
+        dateOfBirth: "1957",
         release: 1,
         version: 1,
         creationDate: "20171204104557",
@@ -166,7 +178,7 @@ const individualList = [
     {
         annotationSets: [],
         id: 267,
-        name: "ricardo",
+        name: "0323-011-COHO_6",
         sex: "MALE",
         karyotypicSex: "XY",
         ethnicity: "white caucasian",
@@ -180,7 +192,7 @@ const individualList = [
             subpopulation: "Andalucia",
             description: ""
         },
-        dateOfBirth: "1920",
+        dateOfBirth: "1988",
         release: 1,
         version: 1,
         creationDate: "20171204104557",
@@ -189,7 +201,7 @@ const individualList = [
             date: "20171204104557",
             message: ""
         },
-        lifeStatus: "UNKNOWN",
+        lifeStatus: "ALIVE",
         affectationStatus: "AFFECTED",
         phenotypes: [
             {
@@ -207,7 +219,7 @@ const individualList = [
     {
         annotationSets: [],
         id: 86,
-        name: "Vicente",
+        name: "04283-010-COHO_7",
         sex: "MALE",
         karyotypicSex: "XY",
         ethnicity: "white caucasian",
@@ -221,7 +233,7 @@ const individualList = [
             subpopulation: "Valencia",
             description: ""
         },
-        dateOfBirth: "1920",
+        dateOfBirth: "1990",
         release: 1,
         version: 1,
         creationDate: "20171204104557",
@@ -230,8 +242,8 @@ const individualList = [
             date: "20171204104557",
             message: ""
         },
-        lifeStatus: "UNKNOWN",
-        affectationStatus: "AFFECTED",
+        lifeStatus: "ALIVE",
+        affectationStatus: "UNAFFECTED",
         phenotypes: [
             {
                 id: "F72",
@@ -248,7 +260,7 @@ const individualList = [
     {
         annotationSets: [],
         id: 280,
-        name: "Ana",
+        name: "05356-010-COHO_7",
         sex: "FEMALE",
         karyotypicSex: "XX",
         ethnicity: "white caucasian",
@@ -262,7 +274,7 @@ const individualList = [
             subpopulation: "Pais Vasco",
             description: ""
         },
-        dateOfBirth: "1920",
+        dateOfBirth: "02-02-1980",
         release: 1,
         version: 1,
         creationDate: "20171204104557",
@@ -271,8 +283,8 @@ const individualList = [
             date: "20171204104557",
             message: ""
         },
-        lifeStatus: "UNKNOWN",
-        affectationStatus: "AFFECTED",
+        lifeStatus: "MISCARRIAGE",
+        affectationStatus: "CONTROL",
         phenotypes: [
             {
                 id: "F72",
@@ -303,7 +315,7 @@ const individualList = [
             subpopulation: "Galicia",
             description: ""
         },
-        dateOfBirth: "1920",
+        dateOfBirth: "1946",
         release: 1,
         version: 1,
         creationDate: "20170204104557",
@@ -312,7 +324,7 @@ const individualList = [
             date: "20171205104557",
             message: ""
         },
-        lifeStatus: "UNKNOWN",
+        lifeStatus: "ABORTED",
         affectationStatus: "AFFECTED",
         phenotypes: [
             {
@@ -328,5 +340,10 @@ const individualList = [
         ]
     }
 ];
+
+for (const individual of individualList) {
+    individual.dateOfBirth = translateDateFromServer(individual.dateOfBirth);
+    individual.creationDate = translateDateFromServer(individual.creationDate);
+}
 
 export default individualList;
