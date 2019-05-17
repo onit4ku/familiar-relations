@@ -6,16 +6,15 @@
     overflow-x: "auto";
 }
 
-.rowDetail {
+.flex-container {
+    display: -webkit-flex;
     display: flex;
+    -webkit-flex-direction: column;
     flex-direction: column;
-    padding: 2rem;
-    flex-basis: "33.33%";
 }
-.rowDetailDesc {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-basis: "66.66%";
-    margin-bottom: 1px;
+
+.flex-container .flex-item {
+    border: 1px solid #dddddd;
+    padding: 20px 50px;
+    background: #fff;
 }

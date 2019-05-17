@@ -215,12 +215,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
             individualId: ownProps.individual.id
         });
     },
-    handleExpand: (event, checked) => {
-        dispatch({
-            type: !!checked ? "EXPAND_INDIVIDUAL" : "COLLAPSE_INDIVIDUAL",
-            individualId: ownProps.individual.id
-        });
-    },
     handleDateChange: (individualId, propertyId) => event => {
         const date = event.target.value;
         dispatch({
@@ -228,6 +222,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
             individualId: individualId,
             property: propertyId,
             value: date
+        });
+    },
+    handleExpand: (event, checked) => {
+        dispatch({
+            type: !!checked ? "EXPAND_INDIVIDUAL" : "COLLAPSE_INDIVIDUAL",
+            individualId: ownProps.individual.id
         });
     }
 });

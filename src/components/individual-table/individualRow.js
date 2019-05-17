@@ -5,32 +5,18 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 import CollapsibleRow from "./CollapsibleRow";
-import {
-    Checkbox,
-    TableCell,
-    TableRow,
-    Tooltip,
-    Divider,
-    Paper
-} from "@material-ui/core";
+import { Checkbox, TableCell, TableRow, Tooltip } from "@material-ui/core";
 
 //==============================================================================
 // IndividualRow
 //==============================================================================
 
 const IndividualRowDetail = props => (
-    <Paper>
-        <div className="rowDetail">{JSON.stringify(props.individual)}</div>
-        <Divider />
-        <div className="rowDetail">Phenotypes</div>
-        <div className="rowDetailDesc"> ༼ つ ◕_◕ ༽つ </div>
-        <Divider />
-        <div className="rowDetail">Diagnostic</div>
-        <div className="rowDetailDesc"> ༼ つ ◕_◕ ༽つ </div>
-        <Divider />
-        <div className="rowDetail">Relations</div>
-        <div className="rowDetailDesc"> ༼ つ ◕_◕ ༽つ </div>
-    </Paper>
+    <div class="flex-container">
+        <div class="flex-item">Diagnostic</div>
+        <div class="flex-item">Relations</div>
+        <div class="flex-item">Phenotypes</div>
+    </div>
 );
 
 const IndividualRow = props => (
