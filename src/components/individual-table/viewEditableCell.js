@@ -12,6 +12,8 @@ import { TableCell } from "@material-ui/core";
 const EditableCellView = ({ propertyValue, updateIndividualProperty }) => (
     <TableCell>
         <TextField
+            placeholder="Input Text"
+            margin="dense"
             type="text"
             value={propertyValue}
             onChange={updateIndividualProperty}

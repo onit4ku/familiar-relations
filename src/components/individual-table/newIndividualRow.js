@@ -3,16 +3,28 @@ import { connect } from "react-redux";
 
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
+import ResetIcon from "@material-ui/icons/Cached";
+import DoneIcon from "@material-ui/icons/DoneAll";
 
+import EditableCell from "./viewEditableCell";
+import SelectView from "./viewSelect";
 import CollapsibleRow from "./CollapsibleRow";
 import {
     Checkbox,
     TableCell,
+    TextField,
+    MenuItem,
     TableRow,
     Tooltip,
     Divider,
     Paper
 } from "@material-ui/core";
+
+// property values
+import affectationStatus from "./individual-properties/affectationStatus";
+import karyotypicSexValues from "./individual-properties/karyotypicSexValues";
+import lifeStatusValues from "./individual-properties/lifeStatus";
+import sexValues from "./individual-properties/sexValues";
 
 //==============================================================================
 // IndividualRow
@@ -33,22 +45,22 @@ const IndividualRowDetail = props => (
     </Paper>
 );
 
-const IndividualRow = props => (
+const newIndividualRow = props => (
     <React.Fragment>
-        <TableRow>
+        <TableRow style={{ backgroundColor: "#e6e6e6" }}>
             <TableCell>
                 <Checkbox
                     checked={!!props.individual.expanded}
                     onChange={props.handleExpand}
                 />
             </TableCell>
-            <TableCell
+            <EditableCell
                 individualId={props.individual.id}
                 propertyId={"name"}
                 propertyValue={getName(props.individual)}
             >
                 {getName(props.individual)}
-            </TableCell>
+            </EditableCell>
             <TableCell
                 individualId={props.individual.id}
                 propertyId={"id"}
@@ -56,64 +68,88 @@ const IndividualRow = props => (
             >
                 {props.individual.id}
             </TableCell>
-            <TableCell
+            <SelectView
                 individualId={props.individual.id}
                 propertyId={"sex"}
                 propertyValue={getSexValues(props.individual)}
             >
-                {getSexValues(props.individual)}
-            </TableCell>
-            <TableCell
+                {Object.keys(sexValues).map(sexValuesId => (
+                    <MenuItem key={sexValuesId} value={sexValuesId}>
+                        {sexValues[sexValuesId].label}
+                    </MenuItem>
+                ))}
+            </SelectView>
+            <SelectView
                 individualId={props.individual.id}
                 propertyId={"karyotypicSex"}
                 propertyValue={getKaryotypicSex(props.individual)}
             >
-                {getKaryotypicSex(props.individual)}
-            </TableCell>
-            <TableCell
+                {Object.keys(karyotypicSexValues).map(karyotypicSexId => (
+                    <MenuItem key={karyotypicSexId} value={karyotypicSexId}>
+                        {karyotypicSexValues[karyotypicSexId].label}
+                    </MenuItem>
+                ))}
+            </SelectView>
+            <EditableCell
                 individualId={props.individual.id}
                 propertyId={"ethnicity"}
                 propertyValue={getEthnicity(props.individual)}
-            >
-                {getEthnicity(props.individual)}
-            </TableCell>
-            <TableCell
+            />
+            <EditableCell
                 individualId={props.individual.id}
                 propertyId={"population"}
                 propertyValue={getPopulation(props.individual)}
-            >
-                {getPopulation(props.individual)}
-            </TableCell>
-            <TableCell
+            />
+            <EditableCell
                 individualId={props.individual.id}
                 propertyId={"subpopulation"}
                 propertyValue={getSubPopulation(props.individual)}
-            >
-                {getSubPopulation(props.individual)}
-            </TableCell>
-
+            />
             <TableCell
                 individualId={props.individual.id}
                 propertyId={"dateOfBirth"}
             >
-                {getIndividualBirthday(props.individual)}
+                <TextField
+                    id={props.individual.id}
+                    label=""
+                    type="date"
+                    value={getIndividualBirthday(props.individual)}
+                    onChange={props.handleDateChange(
+                        props.individual.id,
+                        "dateOfBirth"
+                    )}
+                    InputLabelProps={{
+                        shrink: true
+                    }}
+                />
             </TableCell>
 
-            <TableCell
+            <SelectView
                 individualId={props.individual.id}
                 propertyId={"lifeStatus"}
                 propertyValue={getLifeStatus(props.individual)}
             >
-                {getLifeStatus(props.individual)}
-            </TableCell>
+                {Object.keys(lifeStatusValues).map(lifeStatusId => (
+                    <MenuItem key={lifeStatusId} value={lifeStatusId}>
+                        {lifeStatusValues[lifeStatusId].label}
+                    </MenuItem>
+                ))}
+            </SelectView>
 
-            <TableCell
+            <SelectView
                 individualId={props.individual.id}
                 propertyId={"affectationStatus"}
                 propertyValue={getAffectation(props.individual)}
             >
-                {getAffectation(props.individual)}
-            </TableCell>
+                {Object.keys(affectationStatus).map(affectationStatusId => (
+                    <MenuItem
+                        key={affectationStatusId}
+                        value={affectationStatusId}
+                    >
+                        {affectationStatus[affectationStatusId].label}
+                    </MenuItem>
+                ))}
+            </SelectView>
 
             <TableCell
                 individualId={props.individual.id}
@@ -132,6 +168,21 @@ const IndividualRow = props => (
                 >
                     <DeleteIcon />
                 </IconButton>
+
+                <IconButton
+                    onClick={props.updateIndividual}
+                    aria-label="update"
+                >
+                    <DoneIcon />
+                </IconButton>
+
+                <IconButton
+                    onClick={props.discardChanges}
+                    color="primary"
+                    aria-label="discard"
+                >
+                    <ResetIcon />
+                </IconButton>
             </TableCell>
         </TableRow>
         <CollapsibleRow
@@ -146,9 +197,21 @@ const IndividualRow = props => (
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+    updateIndividual: () => {
+        dispatch({
+            type: "UPDATE_INDIVIDUAL",
+            obj: ownProps.individual
+        });
+    },
     removeIndividual: () => {
         dispatch({
             type: "DELETE_INDIVIDUAL",
+            individualId: ownProps.individual.id
+        });
+    },
+    discardChanges: () => {
+        dispatch({
+            type: "DISCARD_INDIVIDUAL_CHANGES",
             individualId: ownProps.individual.id
         });
     },
@@ -157,12 +220,26 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
             type: !!checked ? "EXPAND_INDIVIDUAL" : "COLLAPSE_INDIVIDUAL",
             individualId: ownProps.individual.id
         });
+    },
+    handleDateChange: (individualId, propertyId) => event => {
+        const date = event.target.value;
+        dispatch({
+            type: "UPDATE_INDIVIDUAL_PROPERTY",
+            individualId: individualId,
+            property: propertyId,
+            value: date
+        });
     }
 });
 
 //==============================================================================
 // Getters
 //==============================================================================
+
+const getEthnicity = individual =>
+    (!!individual.mod && individual.mod.ethnicity) ||
+    individual.ethnicity ||
+    "";
 
 const getPopulation = individual => {
     const props = { individual };
@@ -176,32 +253,10 @@ const getPopulation = individual => {
     );
 };
 
-const getEthnicity = individual => {
-    const props = { individual };
-    if (!!individual.mod) {
-    }
-
-    return (
-        (!!props.individual.mod && props.individual.mod.ethnicity) ||
-        (!!props.individual.ethnicity && props.individual.ethnicity) ||
-        ""
-    );
-};
-
-const getSubPopulation = individual => {
-    const props = { individual };
-    if (!!individual.mod) {
-    }
-
-    return (
-        (!!props.individual.mod &&
-            !!props.individual.mod.population &&
-            props.individual.mod.population.subpopulation) ||
-        (!!props.individual.population &&
-            props.individual.population.subpopulation) ||
-        ""
-    );
-};
+const getSubPopulation = individual =>
+    (!!individual.mod && individual.mod.subpopulation) ||
+    individual.subpopulation ||
+    "";
 
 const getName = individual => {
     const props = { individual };
@@ -239,4 +294,4 @@ const getIndividualBirthday = individual =>
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(IndividualRow);
+)(newIndividualRow);

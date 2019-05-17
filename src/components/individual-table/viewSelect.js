@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import { TableCell } from "@material-ui/core";
 
@@ -17,20 +16,6 @@ const SelectView = ({ propertyValue, updateIndividualProperty, children }) => (
         </Select>
     </TableCell>
 );
-
-
-// const SelectView = ({ propertyValue, updateIndividualProperty, children }) => (
-//     <TableCell>
-//         <Select value={propertyValue} onChange={updateIndividualProperty}>
-//             { children }
-//             {/*
-//             <MenuItem value={propertyValue} onChange={updateIndividualProperty}>
-//                 {propertyValue}
-//             </MenuItem>
-//             */}
-//         </Select>
-//     </TableCell>
-// );
 
 SelectView.propTypes = {
     propertyId: PropTypes.string.isRequired,

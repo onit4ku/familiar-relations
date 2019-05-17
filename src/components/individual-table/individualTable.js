@@ -19,6 +19,8 @@ import AddIcon from "@material-ui/icons/Add";
 
 import SearchBar from "./searchBar";
 import IndividualRow from "./individualRow";
+import NewIndividualRow from "./newIndividualRow";
+
 import { TableCell } from "@material-ui/core";
 
 function filterReducer(state = "", action) {
@@ -84,7 +86,6 @@ const IndividualTable = ({
                             <TableCell>
                                 <IconButton
                                     onClick={onAddIndividual}
-                                    color="green"
                                     aria-label="add"
                                 >
                                     <AddIcon />
@@ -107,12 +108,19 @@ const IndividualTable = ({
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {filteredIndividuals.map(individual => (
-                            <IndividualRow
-                                individual={individual}
-                                key={individual.id}
-                            />
-                        ))}
+                        {filteredIndividuals.map(individual =>
+                            !!individual.editing ? (
+                                <NewIndividualRow
+                                    key={individual.id}
+                                    individual={individual}
+                                />
+                            ) : (
+                                <IndividualRow
+                                    individual={individual}
+                                    key={individual.id}
+                                />
+                            )
+                        )}
                     </TableBody>
                 </Table>
             </Paper>
@@ -131,14 +139,18 @@ const individualTableMapStateToProps = state => ({
     individuals: state.table
 });
 
+const todayDate = new Date()
+    .toJSON()
+    .slice(0, 10)
+    .replace(/-/g, "/");
+
 const individualTableMapDispatchToProps = dispatch => ({
     addIndividual: id => {
         dispatch({
             type: "ADD_INDIVIDUAL",
             obj: {
                 id: id,
-                name: "",
-                date:"1970-01-15",
+                creationDate: todayDate,
                 phenotypes: [0]
             }
         });

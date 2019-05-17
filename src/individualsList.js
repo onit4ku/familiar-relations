@@ -1,14 +1,14 @@
 // TODO: move this to a better place
-const translateDateFromServer = dateStr =>
-    (!!dateStr &&
-        dateStr.length >= 8 &&
-        new Date(
-            `${dateStr.substring(0, 4)}-${dateStr.substring(
-                4,
-                6
-            )}-${dateStr.substring(6, 8)}`
-        )) ||
-    undefined;
+// const translateDateFromServer = dateStr =>
+//     (!!dateStr &&
+//         dateStr.length >= 8 &&
+//         new Date(
+//             `${dateStr.substring(0, 4)}-${dateStr.substring(
+//                 4,
+//                 6
+//             )}-${dateStr.substring(6, 8)}`
+//         )) ||
+//     undefined;
 
 const individualList = [
     {
@@ -28,7 +28,7 @@ const individualList = [
             subpopulation: "Madrid",
             description: ""
         },
-        dateOfBirth: "1959",
+        dateOfBirth: "1983-01-14",
         release: 1,
         version: 1,
         creationDate: "20171204104557",
@@ -66,10 +66,10 @@ const individualList = [
         },
         population: {
             name: "Spain",
-            subpopulation: "Andalucia",
+            subpopulation: "Sevilla",
             description: ""
         },
-        dateOfBirth: "1987",
+        dateOfBirth: "1985-11-14",
         release: 1,
         version: 1,
         creationDate: "20171204104557",
@@ -110,7 +110,7 @@ const individualList = [
             subpopulation: "Valencia",
             description: ""
         },
-        dateOfBirth: "1964",
+        dateOfBirth: "1986-05-24",
         release: 1,
         version: 1,
         creationDate: "20171204104557",
@@ -151,7 +151,7 @@ const individualList = [
             subpopulation: "Madrid",
             description: ""
         },
-        dateOfBirth: "1957",
+        dateOfBirth: "1948-03-12",
         release: 1,
         version: 1,
         creationDate: "20171204104557",
@@ -189,10 +189,10 @@ const individualList = [
         },
         population: {
             name: "Spain",
-            subpopulation: "Andalucia",
+            subpopulation: "Granada",
             description: ""
         },
-        dateOfBirth: "1988",
+        dateOfBirth: "1988-07-31",
         release: 1,
         version: 1,
         creationDate: "20171204104557",
@@ -233,7 +233,7 @@ const individualList = [
             subpopulation: "Valencia",
             description: ""
         },
-        dateOfBirth: "1990",
+        dateOfBirth: "1996-05-24",
         release: 1,
         version: 1,
         creationDate: "20171204104557",
@@ -274,7 +274,7 @@ const individualList = [
             subpopulation: "Pais Vasco",
             description: ""
         },
-        dateOfBirth: "02-02-1980",
+        dateOfBirth: "1966-05-24",
         release: 1,
         version: 1,
         creationDate: "20171204104557",
@@ -315,7 +315,7 @@ const individualList = [
             subpopulation: "Galicia",
             description: ""
         },
-        dateOfBirth: "1946",
+        dateOfBirth: "1956-05-24",
         release: 1,
         version: 1,
         creationDate: "20170204104557",
@@ -341,9 +341,9 @@ const individualList = [
     }
 ];
 
-for (const individual of individualList) {
-    individual.dateOfBirth = translateDateFromServer(individual.dateOfBirth);
-    individual.creationDate = translateDateFromServer(individual.creationDate);
-}
+// for (const individual of individualList) {
+//     individual.dateOfBirth = translateDateFromServer(individual.dateOfBirth);
+//     individual.creationDate = translateDateFromServer(individual.creationDate);
+// }
 
 export default individualList;

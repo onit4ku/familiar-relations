@@ -7,7 +7,7 @@ import individualList from "../../../individualsList";
 export default function tableReducer(state = individualList, action) {
     switch (!!action && action.type) {
         case "ADD_INDIVIDUAL":
-            return state.concat([action.obj]);
+            return [...state, { ...action.obj, editing: true }];
         case "DELETE_INDIVIDUAL":
             return state.filter(
                 individual => individual.id !== action.individualId
