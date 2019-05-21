@@ -1,4 +1,5 @@
 import individualList from "../../../individualsList";
+// import relationList from "../../relations"
 
 //==============================================================================
 // Reducers
@@ -57,6 +58,22 @@ export default function tableReducer(state = individualList, action) {
                     return individual;
                 }
             });
+        // case "EXPAND_RELATION":
+        //     return state.map(individual =>
+        //         individual.id === action.individualId
+        //             ? { ...individual, expanded: true }
+        //             : individual
+        //     );
+
+        // case "COLLAPSE_RELATION":
+        //     return state.map(individual => {
+        //         if (individual.id === action.individualId) {
+        //             const { expanded, ...newIndividual } = individual;
+        //             return newIndividual;
+        //         } else {
+        //             return individual;
+        //         }
+        //     });
         default:
             return state;
     }
