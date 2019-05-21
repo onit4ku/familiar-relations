@@ -2,35 +2,55 @@
 // relations
 //==============================================================================
 
-const relations = [
-    "Twins monozygous",
-    "Twins dizygous",
-    "Twins unknown",
-    "Full sibling",
-    "Parent",
-    "Child",
-    "Maternal aunt or uncle",
-    "Paternal aunt or uncle",
-    "Maternal grandparent",
-    "Paternal grandparent",
-    "Double first cousing",
-    "Maternal cousing sibling",
-    "Parental cousing sibling",
-    "Maternal cousin",
-    "Paternal cousin",
-    "Other",
-    "Child"
-];
-
-const handleChangeMultiple = event => {
-    const { options } = event.target;
-    const value = [];
-    for (let i = 0, l = options.length; i < l; i += 1) {
-        if (options[i].selected) {
-            value.push(options[i].value);
-        }
+const relations = {
+    TWINS_M: {
+        label: "Twins monozygous"
+    },
+    TWINS_D: {
+        label: "Twins dizygous"
+    },
+    TWINS_U: {
+        label: "Twins unknown"
+    },
+    MATERNAL_A: {
+        label: "Maternal aunt or uncle"
+    },
+    PATERNAL_A: {
+        label: "Paternal aunt or uncle"
+    },
+    MATERNAL_G: {
+        label: "Maternal grandparent"
+    },
+    PATERNAL_G: {
+        label: "Paternal grandparent"
+    },
+    DOUBLE_FC: {
+        label: "Double first cousing"
+    },
+    DOUBLE_MCS: {
+        label: "Maternal cousing sibling"
+    },
+    PARENTAL_CS: {
+        label: "Parental cousing sibling"
+    },
+    MATERNAL_C: {
+        label: "Maternal cousin"
+    },
+    PATERNAL_C: {
+        label: "Paternal cousin"
+    },
+    PARENT: {
+        label: "Parent"
+    },
+    CHILD: {
+        label: "Child"
+    },
+    OTHER: {
+        label: "Other"
+    },
+    UNKNOWN: {
+        label: "Unknown"
     }
-    this.setState({
-        relation: value
-    });
 };
+
+export default relations;
