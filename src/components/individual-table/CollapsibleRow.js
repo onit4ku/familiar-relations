@@ -25,10 +25,7 @@ class Collapsible extends React.Component {
     render() {
         return (
             (!!this.props.open || !!this.state.open) && (
-                <TableRow
-                    {...this.props.rowProps}
-                    style={{ backgroundColor: "gray" }}
-                >
+                <TableRow {...this.props.rowProps}>
                     <TableCell {...this.props.cellProps}>
                         <Collapse
                             in={this.props.open && this.state.open}
