@@ -22,6 +22,8 @@ import IndividualRow from "./individualRow";
 import NewIndividualRow from "./newIndividualRow";
 
 import { TableCell } from "@material-ui/core";
+import karyotypicSexValues from './individual-properties/karyotypicSexValues';
+import lifeStatusValues from './individual-properties/lifeStatus';
 
 function filterReducer(state = "", action) {
     switch (!!action && action.type) {
@@ -45,7 +47,6 @@ class Individuals extends React.Component {
     render() {
         return (
             <div>
-                {/*} <SearchBar /> {*/}
                 <ConnIndividualTable />
             </div>
         );
@@ -69,7 +70,13 @@ const IndividualTable = ({
     const filteredIndividuals = !filterText
         ? individuals
         : individuals.filter(
-              individual => individual.name.indexOf(filterText) !== -1
+              individual =>
+                  individual.name.indexOf(filterText) !== -1 ||
+                  individual.affectationStatus.indexOf(filterText) !== -1 || 
+                  individual.population.name.indexOf(filterText) !== -1 || 
+                  individual.population.subpopulation.indexOf(filterText) !== -1 ||
+                  individual.karyotypicSex.indexOf(filterText) !== -1 || 
+                  individual.lifeStatus.indexOf(filterText) !== -1
           );
     const onAddIndividual = () => {
         const id = (+new Date() + Math.floor(Math.random() * 9999)).toString(
