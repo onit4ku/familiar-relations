@@ -1,5 +1,5 @@
 import individualList from "../../../individualsList";
-// import relationList from "../../relations"
+// import relationsList from "../../relations";
 
 //==============================================================================
 // Reducers

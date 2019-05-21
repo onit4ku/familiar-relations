@@ -11,6 +11,7 @@ import {
     Checkbox,
     Table,
     TableCell,
+    TextField,
     TableRow,
     TableBody,
     Tooltip
@@ -26,10 +27,10 @@ const IndividualRowDetail = props => (
             <Table>
                 <TableBody>
                     <TableRow>
-                        <TableCell>
+                        <TableCell rowSpan={2}>
                             <IconButton
                                 // onClick={props.addDiagnostic}
-                                color="secondary"
+                                color="primary"
                                 aria-label="AddDiagnostic"
                             >
                                 <SaveIcon />
@@ -37,11 +38,15 @@ const IndividualRowDetail = props => (
                             Save Diagnostic
                         </TableCell>
                         <TableCell>
-                            <textarea
-                                rows="10"
-                                cols="100"
-                                placeholder="Input the diagnostic here"
-                                style={{ marginBottom: "0.5rem" }}
+                            <TextField
+                                style={{ minWidth: "800px" }}
+                                id="outlined-textarea"
+                                label="Diagnostic"
+                                placeholder="Input the diagnostic here, and then save with the button."
+                                multiline
+                                rows="4"
+                                margin="normal"
+                                variant="outlined"
                             />
                         </TableCell>
                     </TableRow>
@@ -55,7 +60,7 @@ const IndividualRowDetail = props => (
                         <TableCell rowSpan={2}>
                             <IconButton
                                 // onClick={props.addPhenotype}
-                                color="secondary"
+                                color="primary"
                                 aria-label="AddPhenotype"
                             >
                                 <AddIcon />
@@ -74,7 +79,7 @@ const IndividualRowDetail = props => (
                         <TableCell rowSpan={2}>
                             <IconButton
                                 // onClick={props.addRelation}
-                                color="secondary"
+                                color="primary"
                                 aria-label="AddRelation"
                             >
                                 <AddIcon />
@@ -203,19 +208,9 @@ const IndividualRelationDetails = props => (
     <Table>
         <th>Relations of "{getName(props.individual)}":</th>
         <TableRow>
-            <TableCell colSpan={1}>nombre</TableCell>
-            <TableCell colSpan={1}>id</TableCell>
-            <TableCell colSpan={4}>relación</TableCell>
-        </TableRow>
-        <TableRow>
-            <TableCell colSpan={1}>nombre</TableCell>
-            <TableCell colSpan={1}>id</TableCell>
-            <TableCell colSpan={4}>relación</TableCell>
-        </TableRow>
-        <TableRow>
-            <TableCell colSpan={1}>asdfafsas fadsfasfasf safa</TableCell>
-            <TableCell colSpan={1}>id</TableCell>
-            <TableCell colSpan={4}>relaciónrelaciónrelaciónrelación</TableCell>
+            <TableCell>name</TableCell>
+            <TableCell>id</TableCell>
+            <TableCell>relation</TableCell>
         </TableRow>
     </Table>
 );
@@ -224,17 +219,7 @@ const IndividualPhenotypeDetails = props => (
     <Table>
         <th>Phenotypes of "{getName(props.individual)}":</th>
         <TableRow>
-            <TableCell>name</TableCell>
-            <TableCell>id</TableCell>
-            <TableCell>source</TableCell>
-        </TableRow>
-        <TableRow>
-            <TableCell>name</TableCell>
-            <TableCell>id</TableCell>
-            <TableCell>source</TableCell>
-        </TableRow>
-        <TableRow>
-            <TableCell>name</TableCell>
+            <TableCell>phenotype name</TableCell>
             <TableCell>id</TableCell>
             <TableCell>source</TableCell>
         </TableRow>
@@ -255,7 +240,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
             type: !!checked ? "EXPAND_INDIVIDUAL" : "COLLAPSE_INDIVIDUAL",
             individualId: ownProps.individual.id
         });
-    },
+    }
     // handleExpandRelation: (event, checked) => {
     //     dispatch({
     //         type: !!checked ? "EXPAND_RELATION" : "COLLAPSE_RELATION",
