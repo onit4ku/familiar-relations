@@ -16,7 +16,6 @@ import {
     MenuItem,
     TableRow,
     Tooltip,
-    Divider,
     Paper
 } from "@material-ui/core";
 
@@ -33,15 +32,6 @@ import sexValues from "./individual-properties/sexValues";
 const IndividualRowDetail = props => (
     <Paper>
         <div className="rowDetail">{JSON.stringify(props.individual)}</div>
-        <Divider />
-        <div className="rowDetail">Phenotypes</div>
-        <div className="rowDetailDesc"> ༼ つ ◕_◕ ༽つ </div>
-        <Divider />
-        <div className="rowDetail">Diagnostic</div>
-        <div className="rowDetailDesc"> ༼ つ ◕_◕ ༽つ </div>
-        <Divider />
-        <div className="rowDetail">Relations</div>
-        <div className="rowDetailDesc"> ༼ つ ◕_◕ ༽つ </div>
     </Paper>
 );
 
