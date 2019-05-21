@@ -3,9 +3,18 @@ import { connect } from "react-redux";
 
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
+import AddIcon from "@material-ui/icons/Add";
+import SaveIcon from "@material-ui/icons/Save";
 
 import CollapsibleRow from "./CollapsibleRow";
-import { Checkbox, TableCell, TableRow, Tooltip } from "@material-ui/core";
+import {
+    Checkbox,
+    Table,
+    TableCell,
+    TableRow,
+    TableBody,
+    Tooltip
+} from "@material-ui/core";
 
 //==============================================================================
 // IndividualRow
@@ -13,9 +22,70 @@ import { Checkbox, TableCell, TableRow, Tooltip } from "@material-ui/core";
 
 const IndividualRowDetail = props => (
     <div class="flex-container">
-        <div class="flex-item">Diagnostic</div>
-        <div class="flex-item">Relations</div>
-        <div class="flex-item">Phenotypes</div>
+        <div class="flex-item">
+            <Table>
+                <TableBody>
+                    <TableRow>
+                        <TableCell>
+                            <IconButton
+                                // onClick={props.addDiagnostic}
+                                color="secondary"
+                                aria-label="AddDiagnostic"
+                            >
+                                <SaveIcon />
+                            </IconButton>
+                            Save Diagnostic
+                        </TableCell>
+                        <TableCell>
+                            <textarea
+                                rows="10"
+                                cols="100"
+                                placeholder="Input the diagnostic here"
+                                style={{ marginBottom: "0.5rem" }}
+                            />
+                        </TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
+        </div>
+        <div class="flex-item">
+            <Table>
+                <TableBody>
+                    <TableRow>
+                        <TableCell rowSpan={2}>
+                            <IconButton
+                                // onClick={props.addPhenotype}
+                                color="secondary"
+                                aria-label="AddPhenotype"
+                            >
+                                <AddIcon />
+                            </IconButton>
+                            Add Phenotype
+                        </TableCell>
+                    </TableRow>
+                    <IndividualPhenotypeDetails {...props} />
+                </TableBody>
+            </Table>
+        </div>
+        <div class="flex-item">
+            <Table>
+                <TableBody>
+                    <TableRow>
+                        <TableCell rowSpan={2}>
+                            <IconButton
+                                // onClick={props.addRelation}
+                                color="secondary"
+                                aria-label="AddRelation"
+                            >
+                                <AddIcon />
+                            </IconButton>
+                            Add Relation
+                        </TableCell>
+                    </TableRow>
+                    <IndividualRelationDetails {...props} />
+                </TableBody>
+            </Table>
+        </div>
     </div>
 );
 
@@ -129,6 +199,48 @@ const IndividualRow = props => (
     </React.Fragment>
 );
 
+const IndividualRelationDetails = props => (
+    <Table>
+        <th>Relations of "{getName(props.individual)}":</th>
+        <TableRow>
+            <TableCell colSpan={1}>nombre</TableCell>
+            <TableCell colSpan={1}>id</TableCell>
+            <TableCell colSpan={4}>relación</TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell colSpan={1}>nombre</TableCell>
+            <TableCell colSpan={1}>id</TableCell>
+            <TableCell colSpan={4}>relación</TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell colSpan={1}>asdfafsas fadsfasfasf safa</TableCell>
+            <TableCell colSpan={1}>id</TableCell>
+            <TableCell colSpan={4}>relaciónrelaciónrelaciónrelación</TableCell>
+        </TableRow>
+    </Table>
+);
+
+const IndividualPhenotypeDetails = props => (
+    <Table>
+        <th>Phenotypes of "{getName(props.individual)}":</th>
+        <TableRow>
+            <TableCell>name</TableCell>
+            <TableCell>id</TableCell>
+            <TableCell>source</TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell>name</TableCell>
+            <TableCell>id</TableCell>
+            <TableCell>source</TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell>name</TableCell>
+            <TableCell>id</TableCell>
+            <TableCell>source</TableCell>
+        </TableRow>
+    </Table>
+);
+
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -143,7 +255,13 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
             type: !!checked ? "EXPAND_INDIVIDUAL" : "COLLAPSE_INDIVIDUAL",
             individualId: ownProps.individual.id
         });
-    }
+    },
+    // handleExpandRelation: (event, checked) => {
+    //     dispatch({
+    //         type: !!checked ? "EXPAND_RELATION" : "COLLAPSE_RELATION",
+    //         individualId: ownProps.individual.id
+    //     });
+    // }
 });
 
 //==============================================================================
