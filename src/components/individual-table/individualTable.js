@@ -70,13 +70,13 @@ const IndividualTable = ({
         : individuals.filter(
               individual =>
                   individual.name.indexOf(filterText) !== -1 ||
-                  individual.affectationStatus.indexOf(filterText) !== -1 || 
-                  individual.population.name.indexOf(filterText) !== -1 || 
-                  individual.population.subpopulation.indexOf(filterText) !== -1 ||
-                  individual.karyotypicSex.indexOf(filterText) !== -1 || 
+                  individual.affectationStatus.indexOf(filterText) !== -1 ||
+                  individual.population.name.indexOf(filterText) !== -1 ||
+                  individual.population.subpopulation.indexOf(filterText) !==
+                      -1 ||
+                  individual.karyotypicSex.indexOf(filterText) !== -1 ||
                   individual.lifeStatus.indexOf(filterText) !== -1 ||
                   individual.dateOfBirth.indexOf(filterText) !== -1
-
           );
     const onAddIndividual = () => {
         const id = (+new Date() + Math.floor(Math.random() * 9999)).toString(
@@ -156,9 +156,24 @@ const individualTableMapDispatchToProps = dispatch => ({
         dispatch({
             type: "ADD_INDIVIDUAL",
             obj: {
-                id: id,
+                affectationStatus: "UNKNOWN",
+                annotationSets: [],
                 creationDate: todayDate,
-                phenotypes: [0]
+                dateOfBirth: "1900-01-01",
+                ethnicity: "",
+                id: id,
+                karyotypicSex: "UNKNOWN",
+                lifeStatus: "UNKNOWN",
+                name: "",
+                phenotypes: [0],
+                population: { name: "", subpopulation: "", description: "" },
+                sex: "UNKNOWN",
+                species: {
+                    taxonomyCode: "",
+                    scientificName: "",
+                    commonName: ""
+                },
+                status: { name: "READY", date: "20161204104557", message: "" }
             }
         });
     }

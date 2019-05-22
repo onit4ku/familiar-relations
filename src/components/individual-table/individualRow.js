@@ -29,20 +29,20 @@ const IndividualRowDetail = props => (
                     <TableRow>
                         <TableCell rowSpan={2}>
                             <IconButton
-                                // onClick={props.addDiagnostic}
+                                // onClick={props.saveDiagnosis}
                                 color="primary"
-                                aria-label="AddDiagnostic"
+                                aria-label="saveDiagnosis"
                             >
                                 <SaveIcon />
                             </IconButton>
-                            Save Diagnostic
+                            Save Diagnosis
                         </TableCell>
                         <TableCell>
                             <TextField
                                 style={{ minWidth: "800px" }}
                                 id="outlined-textarea"
                                 label="Diagnostic"
-                                placeholder="Input the diagnostic here, and then save with the button."
+                                placeholder="Input the diagnosis here, and then save with the button."
                                 multiline
                                 rows="4"
                                 margin="normal"
