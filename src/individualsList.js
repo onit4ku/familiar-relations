@@ -29,8 +29,6 @@ const individualList = [
             description: ""
         },
         dateOfBirth: "1983-01-14",
-        release: 1,
-        version: 1,
         creationDate: "20171204104557",
         status: {
             name: "READY",

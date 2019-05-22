@@ -11,11 +11,11 @@ export default function tableReducer(state = individualList, action) {
             return [...state, { ...action.obj, editing: true }];
         case "DELETE_INDIVIDUAL":
             return state.filter(
-                individual => individual.id !== action.individualId
+                individual => individual.id !== action.individualid
             );
         case "DISCARD_INDIVIDUAL_CHANGES":
             return state.map(individual => {
-                if (action.individualId === individual.id) {
+                if (action.individualid === individual.id) {
                     const { mod, ...otherProps } = individual;
                     return otherProps;
                 } else {
@@ -24,7 +24,7 @@ export default function tableReducer(state = individualList, action) {
             });
         case "UPDATE_INDIVIDUAL_PROPERTY":
             return state.map(individual =>
-                action.individualId !== individual.id
+                action.individualid !== individual.id
                     ? individual
                     : {
                           ...individual,
@@ -45,13 +45,13 @@ export default function tableReducer(state = individualList, action) {
             });
         case "EXPAND_INDIVIDUAL":
             return state.map(individual =>
-                individual.id === action.individualId
+                individual.id === action.individualid
                     ? { ...individual, expanded: true }
                     : individual
             );
         case "COLLAPSE_INDIVIDUAL":
             return state.map(individual => {
-                if (individual.id === action.individualId) {
+                if (individual.id === action.individualid) {
                     const { expanded, ...newIndividual } = individual;
                     return newIndividual;
                 } else {
@@ -60,14 +60,14 @@ export default function tableReducer(state = individualList, action) {
             });
         // case "EXPAND_RELATION":
         //     return state.map(individual =>
-        //         individual.id === action.individualId
+        //         individual.id === action.individualid
         //             ? { ...individual, expanded: true }
         //             : individual
         //     );
 
         // case "COLLAPSE_RELATION":
         //     return state.map(individual => {
-        //         if (individual.id === action.individualId) {
+        //         if (individual.id === action.individualid) {
         //             const { expanded, ...newIndividual } = individual;
         //             return newIndividual;
         //         } else {

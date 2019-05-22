@@ -9,21 +9,21 @@ import { TableCell } from "@material-ui/core";
 // SelectView
 //==============================================================================
 
-const SelectView = ({ propertyValue, updateIndividualProperty, children }) => (
+const SelectView = ({ propertyvalue, updateIndividualProperty, children }) => (
     <TableCell>
-        <Select value={propertyValue} onChange={updateIndividualProperty}>
+        <Select value={propertyvalue} onChange={updateIndividualProperty}>
             {children}
         </Select>
     </TableCell>
 );
 
 SelectView.propTypes = {
-    propertyId: PropTypes.string.isRequired,
-    propertyValue: PropTypes.string.isRequired
+    propertyid: PropTypes.string.isRequired,
+    propertyvalue: PropTypes.string.isRequired
 };
 
 SelectView.defaultProps = {
-    propertyValue: ""
+    propertyvalue: ""
 };
 
 const SelectViewMapStateToProps = state => ({});
@@ -32,8 +32,8 @@ const SelectViewMapDispatchToProps = (dispatch, ownProps) => ({
     updateIndividualProperty: event => {
         dispatch({
             type: "UPDATE_INDIVIDUAL_PROPERTY",
-            individualId: ownProps.individualId,
-            property: ownProps.propertyId,
+            individualid: ownProps.individualid,
+            property: ownProps.propertyid,
             value: event.target.value
         });
     }

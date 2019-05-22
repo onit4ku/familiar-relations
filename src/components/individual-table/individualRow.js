@@ -22,8 +22,8 @@ import {
 //==============================================================================
 
 const IndividualRowDetail = props => (
-    <div class="flex-container">
-        <div class="flex-item">
+    <div className="flex-container">
+        <div className="flex-item">
             <Table>
                 <TableBody>
                     <TableRow>
@@ -53,7 +53,7 @@ const IndividualRowDetail = props => (
                 </TableBody>
             </Table>
         </div>
-        <div class="flex-item">
+        <div className="flex-item">
             <Table>
                 <TableBody>
                     <TableRow>
@@ -72,7 +72,7 @@ const IndividualRowDetail = props => (
                 </TableBody>
             </Table>
         </div>
-        <div class="flex-item">
+        <div className="flex-item">
             <Table>
                 <TableBody>
                     <TableRow>
@@ -104,81 +104,81 @@ const IndividualRow = props => (
                 />
             </TableCell>
             <TableCell
-                individualId={props.individual.id}
-                propertyId={"name"}
-                propertyValue={getName(props.individual)}
+                individualid={props.individual.id}
+                propertyid={"name"}
+                propertyvalue={getName(props.individual)}
             >
                 {getName(props.individual)}
             </TableCell>
             <TableCell
-                individualId={props.individual.id}
-                propertyId={"id"}
-                propertyValue={props.individual.id}
+                individualid={props.individual.id}
+                propertyid={"id"}
+                propertyvalue={props.individual.id}
             >
                 {props.individual.id}
             </TableCell>
             <TableCell
-                individualId={props.individual.id}
-                propertyId={"sex"}
-                propertyValue={getSexValues(props.individual)}
+                individualid={props.individual.id}
+                propertyid={"sex"}
+                propertyvalue={getSexValues(props.individual)}
             >
                 {getSexValues(props.individual)}
             </TableCell>
             <TableCell
-                individualId={props.individual.id}
-                propertyId={"karyotypicSex"}
-                propertyValue={getKaryotypicSex(props.individual)}
+                individualid={props.individual.id}
+                propertyid={"karyotypicSex"}
+                propertyvalue={getKaryotypicSex(props.individual)}
             >
                 {getKaryotypicSex(props.individual)}
             </TableCell>
             <TableCell
-                individualId={props.individual.id}
-                propertyId={"ethnicity"}
-                propertyValue={getEthnicity(props.individual)}
+                individualid={props.individual.id}
+                propertyid={"ethnicity"}
+                propertyvalue={getEthnicity(props.individual)}
             >
                 {getEthnicity(props.individual)}
             </TableCell>
             <TableCell
-                individualId={props.individual.id}
-                propertyId={"population"}
-                propertyValue={getPopulation(props.individual)}
+                individualid={props.individual.id}
+                propertyid={"population"}
+                propertyvalue={getPopulation(props.individual)}
             >
                 {getPopulation(props.individual)}
             </TableCell>
             <TableCell
-                individualId={props.individual.id}
-                propertyId={"subpopulation"}
-                propertyValue={getSubPopulation(props.individual)}
+                individualid={props.individual.id}
+                propertyid={"subpopulation"}
+                propertyvalue={getSubPopulation(props.individual)}
             >
                 {getSubPopulation(props.individual)}
             </TableCell>
 
             <TableCell
-                individualId={props.individual.id}
-                propertyId={"dateOfBirth"}
+                individualid={props.individual.id}
+                propertyid={"dateOfBirth"}
             >
                 {getIndividualBirthday(props.individual)}
             </TableCell>
 
             <TableCell
-                individualId={props.individual.id}
-                propertyId={"lifeStatus"}
-                propertyValue={getLifeStatus(props.individual)}
+                individualid={props.individual.id}
+                propertyid={"lifeStatus"}
+                propertyvalue={getLifeStatus(props.individual)}
             >
                 {getLifeStatus(props.individual)}
             </TableCell>
 
             <TableCell
-                individualId={props.individual.id}
-                propertyId={"affectationStatus"}
-                propertyValue={getAffectation(props.individual)}
+                individualid={props.individual.id}
+                propertyid={"affectationStatus"}
+                propertyvalue={getAffectation(props.individual)}
             >
                 {getAffectation(props.individual)}
             </TableCell>
 
             <TableCell
-                individualId={props.individual.id}
-                propertyId={"phenotype"}
+                individualid={props.individual.id}
+                propertyid={"phenotype"}
             >
                 <Tooltip title={props.individual.phenotypes[0].name}>
                     <span>{props.individual.phenotypes[0].id}</span>
@@ -207,22 +207,26 @@ const IndividualRow = props => (
 const IndividualRelationDetails = props => (
     <Table>
         <th>Relations of "{getName(props.individual)}":</th>
-        <TableRow>
-            <TableCell>name</TableCell>
-            <TableCell>id</TableCell>
-            <TableCell>relation</TableCell>
-        </TableRow>
+        <TableBody>
+            <TableRow>
+                <TableCell>name</TableCell>
+                <TableCell>id</TableCell>
+                <TableCell>relation</TableCell>
+            </TableRow>
+        </TableBody>
     </Table>
 );
 
 const IndividualPhenotypeDetails = props => (
     <Table>
         <th>Phenotypes of "{getName(props.individual)}":</th>
-        <TableRow>
-            <TableCell>phenotype name</TableCell>
-            <TableCell>id</TableCell>
-            <TableCell>source</TableCell>
-        </TableRow>
+        <TableBody>
+            <TableRow>
+                <TableCell>phenotype name</TableCell>
+                <TableCell>id</TableCell>
+                <TableCell>source</TableCell>
+            </TableRow>
+        </TableBody>
     </Table>
 );
 
@@ -232,19 +236,19 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     removeIndividual: () => {
         dispatch({
             type: "DELETE_INDIVIDUAL",
-            individualId: ownProps.individual.id
+            individualid: ownProps.individual.id
         });
     },
     handleExpand: (event, checked) => {
         dispatch({
             type: !!checked ? "EXPAND_INDIVIDUAL" : "COLLAPSE_INDIVIDUAL",
-            individualId: ownProps.individual.id
+            individualid: ownProps.individual.id
         });
     }
     // handleExpandRelation: (event, checked) => {
     //     dispatch({
     //         type: !!checked ? "EXPAND_RELATION" : "COLLAPSE_RELATION",
-    //         individualId: ownProps.individual.id
+    //         individualid: ownProps.individual.id
     //     });
     // }
 });

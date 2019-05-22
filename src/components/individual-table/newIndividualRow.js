@@ -45,23 +45,23 @@ const newIndividualRow = props => (
                 />
             </TableCell>
             <EditableCell
-                individualId={props.individual.id}
-                propertyId={"name"}
-                propertyValue={getName(props.individual)}
+                individualid={props.individual.id}
+                propertyid={"name"}
+                propertyvalue={getName(props.individual)}
             >
                 {getName(props.individual)}
             </EditableCell>
             <TableCell
-                individualId={props.individual.id}
-                propertyId={"id"}
-                propertyValue={props.individual.id}
+                individualid={props.individual.id}
+                propertyid={"id"}
+                propertyvalue={props.individual.id}
             >
                 {props.individual.id}
             </TableCell>
             <SelectView
-                individualId={props.individual.id}
-                propertyId={"sex"}
-                propertyValue={getSexValues(props.individual)}
+                individualid={props.individual.id}
+                propertyid={"sex"}
+                propertyvalue={getSexValues(props.individual)}
             >
                 {Object.keys(sexValues).map(sexValuesId => (
                     <MenuItem key={sexValuesId} value={sexValuesId}>
@@ -70,9 +70,9 @@ const newIndividualRow = props => (
                 ))}
             </SelectView>
             <SelectView
-                individualId={props.individual.id}
-                propertyId={"karyotypicSex"}
-                propertyValue={getKaryotypicSex(props.individual)}
+                individualid={props.individual.id}
+                propertyid={"karyotypicSex"}
+                propertyvalue={getKaryotypicSex(props.individual)}
             >
                 {Object.keys(karyotypicSexValues).map(karyotypicSexId => (
                     <MenuItem key={karyotypicSexId} value={karyotypicSexId}>
@@ -81,23 +81,23 @@ const newIndividualRow = props => (
                 ))}
             </SelectView>
             <EditableCell
-                individualId={props.individual.id}
-                propertyId={"ethnicity"}
-                propertyValue={getEthnicity(props.individual)}
+                individualid={props.individual.id}
+                propertyid={"ethnicity"}
+                propertyvalue={getEthnicity(props.individual)}
             />
             <EditableCell
-                individualId={props.individual.id}
-                propertyId={"population"}
-                propertyValue={getPopulation(props.individual)}
+                individualid={props.individual.id}
+                propertyid={"population"}
+                propertyvalue={getPopulation(props.individual)}
             />
             <EditableCell
-                individualId={props.individual.id}
-                propertyId={"subpopulation"}
-                propertyValue={getSubPopulation(props.individual)}
+                individualid={props.individual.id}
+                propertyid={"subpopulation"}
+                propertyvalue={getSubPopulation(props.individual)}
             />
             <TableCell
-                individualId={props.individual.id}
-                propertyId={"dateOfBirth"}
+                individualid={props.individual.id}
+                propertyid={"dateOfBirth"}
             >
                 <TextField
                     id={props.individual.id}
@@ -115,9 +115,9 @@ const newIndividualRow = props => (
             </TableCell>
 
             <SelectView
-                individualId={props.individual.id}
-                propertyId={"lifeStatus"}
-                propertyValue={getLifeStatus(props.individual)}
+                individualid={props.individual.id}
+                propertyid={"lifeStatus"}
+                propertyvalue={getLifeStatus(props.individual)}
             >
                 {Object.keys(lifeStatusValues).map(lifeStatusId => (
                     <MenuItem key={lifeStatusId} value={lifeStatusId}>
@@ -127,9 +127,9 @@ const newIndividualRow = props => (
             </SelectView>
 
             <SelectView
-                individualId={props.individual.id}
-                propertyId={"affectationStatus"}
-                propertyValue={getAffectation(props.individual)}
+                individualid={props.individual.id}
+                propertyid={"affectationStatus"}
+                propertyvalue={getAffectation(props.individual)}
             >
                 {Object.keys(affectationStatus).map(affectationStatusId => (
                     <MenuItem
@@ -142,8 +142,8 @@ const newIndividualRow = props => (
             </SelectView>
 
             <TableCell
-                individualId={props.individual.id}
-                propertyId={"phenotype"}
+                individualid={props.individual.id}
+                propertyid={"phenotype"}
             >
                 <Tooltip title={props.individual.phenotypes[0].name}>
                     <span>{props.individual.phenotypes[0].id}</span>
@@ -196,28 +196,28 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     removeIndividual: () => {
         dispatch({
             type: "DELETE_INDIVIDUAL",
-            individualId: ownProps.individual.id
+            individualid: ownProps.individual.id
         });
     },
     discardChanges: () => {
         dispatch({
             type: "DISCARD_INDIVIDUAL_CHANGES",
-            individualId: ownProps.individual.id
+            individualid: ownProps.individual.id
         });
     },
-    handleDateChange: (individualId, propertyId) => event => {
+    handleDateChange: (individualid, propertyid) => event => {
         const date = event.target.value;
         dispatch({
             type: "UPDATE_INDIVIDUAL_PROPERTY",
-            individualId: individualId,
-            property: propertyId,
+            individualid: individualid,
+            property: propertyid,
             value: date
         });
     },
     handleExpand: (event, checked) => {
         dispatch({
             type: !!checked ? "EXPAND_INDIVIDUAL" : "COLLAPSE_INDIVIDUAL",
-            individualId: ownProps.individual.id
+            individualid: ownProps.individual.id
         });
     }
 });

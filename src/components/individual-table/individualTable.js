@@ -156,24 +156,32 @@ const individualTableMapDispatchToProps = dispatch => ({
         dispatch({
             type: "ADD_INDIVIDUAL",
             obj: {
-                affectationStatus: "UNKNOWN",
                 annotationSets: [],
-                creationDate: todayDate,
-                dateOfBirth: "1900-01-01",
-                ethnicity: "",
                 id: id,
-                karyotypicSex: "UNKNOWN",
-                lifeStatus: "UNKNOWN",
                 name: "",
-                phenotypes: [0],
-                population: { name: "", subpopulation: "", description: "" },
                 sex: "UNKNOWN",
+                karyotypicSex: "UNKNOWN",
+                ethnicity: "",
                 species: {
                     taxonomyCode: "",
                     scientificName: "",
                     commonName: ""
                 },
-                status: { name: "READY", date: "20161204104557", message: "" }
+                population: { name: "", subpopulation: "", description: "" },
+                dateOfBirth: "1870-01-01",
+                creationDate: todayDate,
+                status: { name: "", date: "1870-01-01", message: "" },
+                lifeStatus: "UNKNOWN",
+                affectationStatus: "UNKNOWN",
+                phenotypes: [
+                    {
+                        id: "",
+                        name: "",
+                        source: ""
+                    }
+                ],
+                diagnosis: { info: "" },
+                relations: [{ individual: { name: "", id: "", relation: "" } }]
             }
         });
     }
