@@ -7,6 +7,7 @@ import AddIcon from "@material-ui/icons/Add";
 import SaveIcon from "@material-ui/icons/Save";
 
 import CollapsibleRow from "./CollapsibleRow";
+
 import {
     Checkbox,
     Table,
@@ -67,8 +68,8 @@ const IndividualRowDetail = props => (
                             </IconButton>
                             Add Phenotype
                         </TableCell>
+                        <IndividualPhenotypeDetails {...props} />
                     </TableRow>
-                    <IndividualPhenotypeDetails {...props} />
                 </TableBody>
             </Table>
         </div>
@@ -86,8 +87,8 @@ const IndividualRowDetail = props => (
                             </IconButton>
                             Add Relation
                         </TableCell>
+                        <IndividualRelationDetails {...props} />
                     </TableRow>
-                    <IndividualRelationDetails {...props} />
                 </TableBody>
             </Table>
         </div>
@@ -245,12 +246,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
             individualid: ownProps.individual.id
         });
     }
-    // handleExpandRelation: (event, checked) => {
-    //     dispatch({
-    //         type: !!checked ? "EXPAND_RELATION" : "COLLAPSE_RELATION",
-    //         individualid: ownProps.individual.id
-    //     });
-    // }
 });
 
 //==============================================================================

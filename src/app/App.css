@@ -11,6 +11,8 @@
     display: flex;
     -webkit-flex-direction: column;
     flex-direction: column;
+    justify-content: space-evenly;
+    align-content: space-evenly;
 }
 
 .flex-container .flex-item {
