@@ -53,4 +53,4 @@ Collapsible.defaultProps = {
     open: false
 };
 
-export default withTheme()(Collapsible);
+export default withTheme(Collapsible);
